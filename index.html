@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تحميل فيديوهات TikTok بدون علامة مائية</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{
+            font-family:Segoe UI,Tahoma,Geneva,Verdana,sans-serif;
+            background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+            min-height:100vh;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            padding:20px
+        }
+        .container{
+            background:#fff;
+            border-radius:20px;
+            box-shadow:0 20px 60px rgba(0,0,0,.3);
+            padding:40px;
+            max-width:600px;
+            width:100%;
+            margin-top:50px
+        }
+        h1{text-align:center;margin-bottom:10px}
+        .subtitle{text-align:center;color:#666;margin-bottom:30px}
+        input[type=text]{
+            width:100%;
+            padding:15px;
+            border:2px solid #e0e0e0;
+            border-radius:10px;
+            font-size:16px;
+            direction:ltr;
+            text-align:left
+        }
+        .btn{
+            width:100%;
+            padding:15px;
+            background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+            color:#fff;
+            border:none;
+            border-radius:10px;
+            font-size:18px;
+            font-weight:bold;
+            cursor:pointer;
+            margin-top:15px
+        }
+        .loading,.error,.success,.result{display:none;margin-top:20px}
+        .show{display:block}
+        .video-preview{width:100%;border-radius:10px;margin-top:15px}
+        .download-btn{
+            margin-top:15px;
+            width:100%;
+            padding:12px;
+            background:#28a745;
+            color:#fff;
+            border:none;
+            border-radius:8px;
+            font-size:16px;
+            cursor:pointer
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>تحميل فيديوهات TikTok</h1>
+    <p class="subtitle">بدون علامة مائية</p>
+
+    <!-- التعديل هنا فقط -->
+    <input
+        type="text"
+        id="videoUrl"
+        placeholder="الصق رابط فيديو TikTok هنا"
+        autocomplete="off"
+    >
+
+    <button class="btn" onclick="downloadVideo()">تحميل</button>
+
+    <div class="loading" id="loading">جاري المعالجة...</div>
+    <div class="error" id="error"></div>
+    <div class="success" id="success"></div>
+
+    <div class="result" id="result">
+        <video id="videoPreview" class="video-preview" controls></video>
+        <button class="download-btn" onclick="downloadFile()">تحميل الفيديو</button>
+    </div>
+</div>
+
+<script>
+const RAPIDAPI_KEY = 'ضع_مفتاحك_هنا';
+const RAPIDAPI_HOST = 'tiktok-download-video1.p.rapidapi.com';
+let currentVideoUrl = null;
+
+async function downloadVideo(){
+    const url = document.getElementById('videoUrl').value.trim();
+    if(!url){showError('حط رابط فقط');return;}
+    document.getElementById('loading').classList.add('show');
+
+    try{
+        const res = await fetch(`https://${RAPIDAPI_HOST}/getVideo?url=`+encodeURIComponent(url),{
+            headers:{
+                'x-rapidapi-key':RAPIDAPI_KEY,
+                'x-rapidapi-host':RAPIDAPI_HOST
+            }
+        });
+        const data = await res.json();
+        document.getElementById('loading').classList.remove('show');
+
+        if(data?.data?.play){
+            currentVideoUrl = data.data.play;
+            document.getElementById('videoPreview').src = currentVideoUrl;
+            document.getElementById('result').classList.add('show');
+            showSuccess('جاهز');
+        }else{
+            showError('الرابط غير صالح');
+        }
+    }catch(e){
+        document.getElementById('loading').classList.remove('show');
+        showError('خطأ اتصال');
+    }
+}
+
+function downloadFile(){
+    if(!currentVideoUrl)return;
+    const a=document.createElement('a');
+    a.href=currentVideoUrl;
+    a.download='tiktok.mp4';
+    a.click();
+}
+
+function showError(msg){
+    const e=document.getElementById('error');
+    e.innerText=msg;
+    e.classList.add('show');
+}
+function showSuccess(msg){
+    const s=document.getElementById('success');
+    s.innerText=msg;
+    s.classList.add('show');
+}
+</script>
+
+</body>
+</html>
