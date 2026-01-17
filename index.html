@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تحميل فيديوهات TikTok</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 500px;
+            width: 100%;
+            margin-top: 30px;
+            text-align: center;
+        }
+        .usage-counter { background: #fff9e6; padding: 10px; border-radius: 8px; margin-bottom: 20px; font-size: 0.9em; }
+        .instructions { background: #e3f2fd; padding: 15px; border-radius: 8px; margin-bottom: 20px; text-align: right; font-size: 0.85em; }
+        
+        /* هذا هو تنسيق المربع المطلوب */
+        .input-group { width: 100%; margin-bottom: 20px; }
+        input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            text-align: left; /* للرابط */
+            direction: ltr;
+            display: block; /* لضمان استقلاله */
+        }
+
+        .btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 20px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+        .feature { font-size: 0.8em; color: #666; }
+        #loading, #result, #error { display: none; margin-top: 20px; }
+        .show { display: block !important; }
+        video { width: 100%; border-radius: 10px; }
+        .download-link {
+            display: block; margin-top: 10px; padding: 12px;
+            background: #28a745; color: white; text-decoration: none; border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🎬 TikTok Downloader</h1>
+        
+        <div id="usageCounter" class="usage-counter">📊 جاري التحميل...</div>
+
+        <div class="instructions">
+            📌 1. انسخ رابط الفيديو من تيك توك.<br>
+            📌 2. الصقه في المربع واضغط تحميل.
+        </div>
+
+        <div class="input-group">
+            <input type="text" id="videoUrl" placeholder="" autocomplete="off">
+        </div>
+
+        <button class="btn" onclick="downloadVideo()">🚀 تحميل الفيديو</button>
+
+        <div id="loading">⏳ جاري المعالجة...</div>
+        <div id="error" style="color: red;"></div>
+
+        <div id="result">
+            <video id="videoPreview" controls></video>
+            <a id="downloadBtn" class="download-link" href="#" target="_blank">📥 تحميل الآن</a>
+        </div>
+
+        <div class="features">
+            <div class="feature">✨ بدون علامة مائية</div>
+            <div class="feature">⚡ سريع وسهل</div>
+            <div class="feature">🔒 آمن ومجاني</div>
+            <div class="feature">📱 لكل الأجهزة</div>
+        </div>
+    </div>
+
+    <script>
+        const API_KEY = 'c107978669msh8c9b80d11a0150dp1b0b56jsn6b0f9128b487';
+        const API_HOST = 'tiktok-download-video1.p.rapidapi.com';
+
+        function updateUsage() {
+            let count = localStorage.getItem('tk_count') || 0;
+            document.getElementById('usageCounter').innerHTML = `📊 المتبقي: ${200 - count} من 200`;
+        }
+
+        async function downloadVideo() {
+            const url = document.getElementById('videoUrl').value.trim();
+            if(!url) return;
+
+            document.getElementById('loading').classList.add('show');
+            document.getElementById('result').classList.remove('show');
+            
+            try {
+                const res = await fetch(`https://${API_HOST}/getVideo?url=${encodeURIComponent(url)}`, {
+                    headers: { 'x-rapidapi-key': API_KEY, 'x-rapidapi-host': API_HOST }
+                });
+                const json = await res.json();
+                
+                if(json.data && json.data.play) {
+                    let count = parseInt(localStorage.getItem('tk_count') || 0);
+                    localStorage.setItem('tk_count', count + 1);
+                    updateUsage();
+
+                    document.getElementById('videoPreview').src = json.data.play;
+                    document.getElementById('downloadBtn').href = json.data.play;
+                    document.getElementById('result').classList.add('show');
+                }
+            } catch (e) {
+                document.getElementById('error').innerHTML = "خطأ في التحميل";
+                document.getElementById('error').classList.add('show');
+            }
+            document.getElementById('loading').classList.remove('show');
+        }
+
+        window.onload = updateUsage;
+    </script>
+</body>
+</html>
