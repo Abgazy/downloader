@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تحميل فيديوهات TikTok - النسخة الكاملة</title>
+    <script type='text/javascript' src='//pl28496644.effectivegatecpm.com/34/c8/da/34c8da04dcbafe7aee4b6c266144c73e.js'></script>
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex; flex-direction: column; align-items: center; padding: 20px;
+        }
+        .container {
+            background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 25px; max-width: 500px; width: 100%; margin-top: 20px;
+            display: flex; flex-direction: column; position: relative; z-index: 10;
+        }
+        h1 { text-align: center; color: #333; margin: 15px 0; font-size: 1.6em; }
+        .ad-container-top { width: 100%; display: flex; justify-content: center; min-height: 50px; margin-bottom: 10px; }
+        .usage-counter { background: #fff9e6; padding: 10px; border-radius: 8px; text-align: center; margin-bottom: 20px; font-size: 0.85em; border: 1px solid #ffeeba; color: #856404; }
+        .btn {
+            width: 100%; padding: 16px; border: none; border-radius: 12px;
+            background: linear-gradient(135deg, #fe2c55 0%, #ee1d52 100%);
+            color: white; font-size: 17px; font-weight: bold; cursor: pointer;
+        }
+        .bottom-section { order: 2; margin-top: 25px; border-top: 1px solid #eee; padding-top: 20px; }
+        input[type="text"] { width: 100%; padding: 14px; border: 2px solid #fe2c55; border-radius: 10px; outline: none; }
+        .result { margin-top: 20px; display: none; text-align: center; }
+        video { width: 100%; border-radius: 12px; background: #000; }
+        .dl-link { display: inline-block; width: 100%; margin-top: 15px; padding: 14px; background: #28a745; color: white; text-decoration: none; border-radius: 10px; font-weight: bold; }
+        .loading { display: none; text-align: center; margin: 15px 0; color: #fe2c55; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="ad-container-top">
+            <script type="text/javascript">
+                atOptions = { 'key' : '395e4252f579922a8806b892c2934b47', 'format' : 'iframe', 'height' : 50, 'width' : 320, 'params' : {} };
+            </script>
+            <script type="text/javascript" src="https://www.highperformanceformat.com/395e4252f579922a8806b892c2934b47/invoke.js"></script>
+        </div>
+
+        <div class="top-section">
+            <h1>🎬 TikTok Saver Pro</h1>
+            <div class="usage-counter" id="usageCounter">📊 جاري الربط بالسيرفرات...</div>
+            <button type="button" class="btn" onclick="startDownload()">🚀 ابدأ التحميل الآن</button>
+            <div id="loading" class="loading">⏳ جاري معالجة الفيديو...</div>
+            <div id="result" class="result">
+                <video id="videoPreview" controls playsinline></video>
+                <button id="realDownloadBtn" class="dl-link" onclick="forceDownload()">📥 حفظ في الاستوديو</button>
+            </div>
+        </div>
+
+        <div class="bottom-section">
+            <p style="text-align: center; margin-bottom: 10px; color: #555; font-size: 0.9em;">الصق الرابط بالأسفل 👇</p>
+            <input type="text" id="videoUrl" placeholder="https://www.tiktok.com/..." autocomplete="off">
+        </div>
+    </div>
+
+    <script type="text/javascript" src="//pl28496644.effectivegatecpm.com/34/c8/da/34c8da04dcbafe7aee4b6c266144c73e.js"></script>
+
+    <script>
+        const API_KEY = 'c107978669msh8c9b80d11a0150dp1b0b56jsn6b0f9128b487';
+        const apiSources = [
+            { host: 'tiktok-download5.p.rapidapi.com', type: 'GET', endpoint: 'https://tiktok-download5.p.rapidapi.com/getVideo?url=' },
+            { host: 'tiktok-video-downloader-api-no-watermark.p.rapidapi.com', type: 'POST', endpoint: 'https://tiktok-video-downloader-api-no-watermark.p.rapidapi.com/tiktok' },
+            { host: 'tiktok-download-video1.p.rapidapi.com', type: 'GET', endpoint: 'https://tiktok-download-video1.p.rapidapi.com/getVideo?url=' }
+        ];
+
+        let globalVideoUrl = "";
+
+        function updateCount() {
+            let c = localStorage.getItem('tk_c_final') || 0;
+            document.getElementById('usageCounter').innerHTML = `✅ السيرفرات نشطة | تم تحميل ${c} فيديو اليوم`;
+        }
+
+        async function startDownload() {
+            const input = document.getElementById('videoUrl');
+            const url = input.value.trim();
+            if(!url) { alert("الرجاء لصق رابط الفيديو"); return; }
+
+            const loading = document.getElementById('loading');
+            const result = document.getElementById('result');
+            loading.style.display = 'block';
+            result.style.display = 'none';
+
+            let shuffledSources = apiSources.sort(() => 0.5 - Math.random());
+            let success = false;
+
+            for (let source of shuffledSources) {
+                try {
+                    let response;
+                    if(source.type === 'GET') {
+                        response = await fetch(`${source.endpoint}${encodeURIComponent(url)}`, {
+                            headers: { 'x-rapidapi-key': API_KEY, 'x-rapidapi-host': source.host }
+                        });
+                    } else {
+                        response = await fetch(source.endpoint, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json', 'x-rapidapi-key': API_KEY, 'x-rapidapi-host': source.host },
+                            body: JSON.stringify({ url: url })
+                        });
+                    }
+
+                    const data = await response.json();
+                    let finalUrl = "";
+                    if (data.data && data.data.play) finalUrl = data.data.play;
+                    else if (data.url) finalUrl = data.url;
+                    else if (data.video_url) finalUrl = data.video_url;
+
+                    if(finalUrl) {
+                        globalVideoUrl = finalUrl;
+                        document.getElementById('videoPreview').src = globalVideoUrl;
+                        result.style.display = 'block';
+                        localStorage.setItem('tk_c_final', parseInt(localStorage.getItem('tk_c_final') || 0) + 1);
+                        updateCount();
+                        success = true;
+                        break;
+                    }
+                } catch (e) { console.error("فشل سيرفر " + source.host); }
+            }
+            if(!success) alert("جميع السيرفرات مشغولة حالياً");
+            loading.style.display = 'none';
+        }
+
+        async function forceDownload() {
+            if(!globalVideoUrl) return;
+            const btn = document.getElementById('realDownloadBtn');
+            btn.innerHTML = "⏳ جاري الحفظ...";
+            try {
+                const response = await fetch(globalVideoUrl);
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `tiktok_${Date.now()}.mp4`;
+                document.body.appendChild(a);
+                a.click();
+                btn.innerHTML = "✅ تم الحفظ";
+                setTimeout(() => btn.innerHTML = "📥 حفظ في الاستوديو", 3000);
+            } catch (e) { window.open(globalVideoUrl, '_blank'); }
+        }
+
+        window.onload = updateCount;
+    </script>
+</body>
+</html>
