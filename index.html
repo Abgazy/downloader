@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تحميل فيديوهات TikTok بدون علامة مائية</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            margin-top: 50px;
+        }
+        h1 { color: #333; text-align: center; margin-bottom: 10px; font-size: 2em; }
+        .subtitle { text-align: center; color: #666; margin-bottom: 30px; font-size: 0.9em; }
+        
+        /* هذا الجزء يضمن فصل المربع تماماً عن نصوص الصفحة */
+        .input-wrapper {
+            position: relative;
+            margin-bottom: 20px;
+            background: #fff;
+            border-radius: 10px;
+            z-index: 10;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            direction: ltr;
+            text-align: left;
+            background: white !important; /* لضمان عدم الشفافية */
+            color: #333;
+            -webkit-appearance: none;
+        }
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .btn {
+            width: 100%; padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; border: none; border-radius: 10px;
+            font-size: 18px; font-weight: bold; cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4); }
+        .result { margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px; display: none; }
+        .result.show { display: block; }
+        .video-preview { width: 100%; border-radius: 10px; margin-bottom: 15px; background: #000; }
+        .download-btn {
+            display: block; padding: 12px 30px; background: #28a745; color: white;
+            text-decoration: none; border-radius: 8px; font-weight: bold; width: 100%; text-align: center;
+        }
+        .error, .success { padding: 15px; border-radius: 8px; margin-top: 15px; display: none; }
+        .error.show { display: block; background: #fff3cd; color: #856404; }
+        .success.show { display: block; background: #d4edda; color: #155724; }
+        .loading { text-align: center; padding: 20px; display: none; }
+        .loading.show { display: block; }
+        .spinner {
+            border: 3px solid #f3f3f3; border-top: 3px solid #667eea;
+            border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto 10px;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .features {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px; margin-top: 30px; padding-top: 30px; border-top: 1px solid #e0e0e0;
+        }
+        .feature { text-align: center; }
+        .feature-icon { font-size: 2em; margin-bottom: 10px; }
+        .feature-text { color: #666; font-size: 0.9em; }
+        .ad-space { background: #f0f0f0; border: 2px dashed #ccc; border-radius: 10px; padding: 20px; text-align: center; color: #999; margin: 20px 0; }
+        .instructions { background: #e3f2fd; border-right: 4px solid #2196f3; padding: 15px; border-radius: 8px; margin-bottom: 20px; font-size: 0.9em; color: #0d47a1; }
+        .usage-counter { background: #fff9e6; border: 1px solid #ffd966; padding: 10px; border-radius: 8px; margin-bottom: 20px; text-align: center; font-size: 0.85em; color: #805500; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎬 تحميل فيديوهات TikTok</h1>
+        <p class="subtitle">احفظ فيديوهاتك المفضلة بدون علامة مائية - مجاناً</p>
+
+        <div class="ad-space">مساحة إعلانية</div>
+        <div class="usage-counter" id="usageCounter">📊 جاري التحميل...</div>
+
+        <div class="instructions">
+            📌 <strong>طريقة الاستخدام:</strong><br>
+            1. انسخ رابط الفيديو من تيك توك.<br>
+            2. الصق الرابط في المربع أدناه واضغط تحميل.
+        </div>
+
+        <div class="input-wrapper">
+            <input type="text" id="videoUrl" value="" placeholder="" autocomplete="off" spellcheck="false">
+        </div>
+
+        <button class="btn" id="downloadBtn" onclick="downloadVideo()">🚀 تحميل الفيديو</button>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>جاري معالجة الفيديو...</p>
+        </div>
+
+        <div class="success" id="success"></div>
+        <div class="error" id="error"></div>
+
+        <div id="result" class="result">
+            <video class="video-preview" id="videoPreview" controls playsinline></video>
+            <a class="download-btn" id="downloadLink" href="#" target="_blank">📥 تحميل الفيديو الآن</a>
+        </div>
+
+        <div class="features">
+            <div class="feature"><div class="feature-icon">✨</div><div class="feature-text">بدون علامة مائية</div></div>
+            <div class="feature"><div class="feature-icon">⚡</div><div class="feature-text">سريع وسهل</div></div>
+            <div class="feature"><div class="feature-icon">🔒</div><div class="feature-text">آمن ومجاني</div></div>
+            <div class="feature"><div class="feature-icon">📱</div><div class="feature-text">يعمل على الأجهزة</div></div>
+        </div>
+    </div>
+
+    <script>
+        const RAPIDAPI_KEY = 'c107978669msh8c9b80d11a0150dp1b0b56jsn6b0f9128b487';
+        const RAPIDAPI_HOST = 'tiktok-download-video1.p.rapidapi.com';
+
+        function updateUsage() {
+            let count = localStorage.getItem('tk_usage_limit') || 0;
+            document.getElementById('usageCounter').innerHTML = `📊 المتبقي: ${200 - count} من 200`;
+        }
+
+        async function downloadVideo() {
+            const input = document.getElementById('videoUrl');
+            const url = input.value.trim();
+            if(!url) return;
+
+            document.getElementById('loading').classList.add('show');
+            document.getElementById('result').classList.remove('show');
+            document.getElementById('error').classList.remove('show');
+
+            try {
+                const res = await fetch(`https://${RAPIDAPI_HOST}/getVideo?url=${encodeURIComponent(url)}`, {
+                    headers: { 'x-rapidapi-key': RAPIDAPI_KEY, 'x-rapidapi-host': RAPIDAPI_HOST }
+                });
+                const json = await res.json();
+                
+                if(json.data && json.data.play) {
+                    let count = parseInt(localStorage.getItem('tk_usage_limit') || 0);
+                    localStorage.setItem('tk_usage_limit', count + 1);
+                    updateUsage();
+                    document.getElementById('videoPreview').src = json.data.play;
+                    document.getElementById('downloadLink').href = json.data.play;
+                    document.getElementById('result').classList.add('show');
+                } else {
+                    document.getElementById('error').innerHTML = "❌ لم يتم العثور على الفيديو";
+                    document.getElementById('error').classList.add('show');
+                }
+            } catch (e) {
+                document.getElementById('error').innerHTML = "❌ خطأ في الاتصال";
+                document.getElementById('error').classList.add('show');
+            }
+            document.getElementById('loading').classList.remove('show');
+        }
+
+        window.onload = function() {
+            updateUsage();
+            // تفريغ المربع عند التحميل ومنع اقتراحات المتصفح
+            const input = document.getElementById('videoUrl');
+            input.value = "";
+            input.setAttribute('value', '');
+        };
+    </script>
+</body>
+</html>
