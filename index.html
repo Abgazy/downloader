@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تحميل فيديوهات TikTok</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        .container {
+            background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 25px; max-width: 500px; width: 100%; margin-top: 20px;
+            display: flex; flex-direction: column;
+        }
+        h1 { text-align: center; color: #333; margin: 15px 0; font-size: 1.6em; }
+        
+        .ad-container-top {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 50px;
+            margin-bottom: 10px;
+            background: #fdfdfd;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .usage-counter { background: #fff9e6; padding: 10px; border-radius: 8px; text-align: center; margin-bottom: 20px; font-size: 0.85em; border: 1px solid #ffeeba; color: #856404; }
+        
+        .btn {
+            width: 100%; padding: 16px; border: none; border-radius: 12px;
+            background: linear-gradient(135deg, #fe2c55 0%, #ee1d52 100%);
+            color: white; font-size: 17px; font-weight: bold; cursor: pointer;
+            box-shadow: 0 4px 15px rgba(254, 44, 85, 0.3);
+        }
+        .btn:active { transform: scale(0.98); }
+
+        .bottom-section { order: 2; margin-top: 25px; border-top: 1px solid #eee; padding-top: 20px; }
+        input[type="text"] {
+            width: 100%; padding: 14px; border: 2px solid #fe2c55; border-radius: 10px;
+            font-size: 15px; direction: ltr; text-align: left; background: #fff; outline: none;
+            color: #333;
+        }
+        input[type="text"]::placeholder {
+            color: #999;
+        }
+
+        .result { margin-top: 20px; display: none; text-align: center; }
+        video { width: 100%; border-radius: 12px; background: #000; }
+        
+        .dl-link { 
+            display: inline-block; width: 100%; margin-top: 15px; padding: 14px; 
+            background: #28a745; color: white; text-decoration: none; 
+            border-radius: 10px; font-weight: bold; font-size: 16px; cursor: pointer; border: none;
+        }
+
+        .loading { display: none; text-align: center; margin: 15px 0; font-weight: bold; color: #fe2c55; font-size: 0.9em; }
+
+        /* Footer Styles */
+        .footer {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            padding: 30px 25px;
+            max-width: 500px;
+            width: 100%;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .footer-link {
+            display: block;
+            padding: 12px;
+            background: #f8f9fa;
+            color: #333;
+            text-decoration: none;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .footer-link:hover {
+            background: #fe2c55;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .footer-text {
+            text-align: center;
+            color: #666;
+            font-size: 0.85em;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .footer-text p {
+            margin: 5px 0;
+        }
+
+        @media (max-width: 500px) {
+            .footer-links {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="ad-container-top">
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : '395e4252f579922a8806b892c2934b47',
+                    'format' : 'iframe',
+                    'height' : 50,
+                    'width' : 320,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="https://www.highperformanceformat.com/395e4252f579922a8806b892c2934b47/invoke.js"></script>
+        </div>
+
+        <div class="top-section">
+            <h1>🎬 TikTok Saver</h1>
+            
+            <div class="usage-counter" id="usageCounter">📊 جاري التحقق من الصلاحية...</div>
+
+            <button type="button" class="btn" onclick="downloadVideo()">🚀 ابدأ التحميل الآن</button>
+            
+            <div id="loading" class="loading">⏳ جاري معالجة الرابط...</div>
+
+            <div id="result" class="result">
+                <video id="videoPreview" controls playsinline></video>
+                <button id="realDownloadBtn" class="dl-link" onclick="forceDownload()">📥 حفظ في الاستوديو</button>
+            </div>
+        </div>
+
+        <div class="bottom-section">
+            <p style="text-align: center; margin-bottom: 10px; color: #555; font-size: 0.9em;">الصق الرابط بالأسفل 👇</p>
+            <input type="text" id="videoUrl" placeholder="الصق الرابط هنا" autocomplete="off">
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="footer">
+        <div class="footer-links">
+            <a href="privacy.html" class="footer-link">🔒 Privacy Policy</a>
+            <a href="terms.html" class="footer-link">📜 Terms of Service</a>
+            <a href="about.html" class="footer-link">ℹ️ About Us</a>
+            <a href="contact.html" class="footer-link">✉️ Contact Us</a>
+        </div>
+        
+        <div class="footer-text">
+            <p><strong>TikTok Saver</strong></p>
+            <p>Free TikTok Video Downloader - No Watermark</p>
+            <p style="margin-top: 10px; font-size: 0.8em;">© 2025 TikTok Saver. All rights reserved.</p>
+            <p style="font-size: 0.75em; color: #999; margin-top: 5px;">Not affiliated with TikTok or ByteDance Ltd.</p>
+        </div>
+    </div>
+
+    <script>
+        const API_KEY = 'c107978669msh8c9b80d11a0150dp1b0b56jsn6b0f9128b487';
+        const API_HOST = 'tiktok-download-video1.p.rapidapi.com';
+        let globalVideoUrl = "";
+
+        function updateCount() {
+            let c = localStorage.getItem('tk_c_final') || 0;
+            document.getElementById('usageCounter').innerHTML = `📊 متاح لك اليوم: ${200 - c} تحميل مجاني`;
+        }
+
+        async function downloadVideo() {
+            const input = document.getElementById('videoUrl');
+            const url = input.value.trim();
+            if(!url) { alert("الرجاء لصق رابط الفيديو أولاً في الخانة بالأسفل"); return; }
+
+            const loading = document.getElementById('loading');
+            const result = document.getElementById('result');
+            
+            loading.style.display = 'block';
+            result.style.display = 'none';
+
+            try {
+                const res = await fetch(`https://${API_HOST}/getVideo?url=${encodeURIComponent(url)}`, {
+                    headers: { 'x-rapidapi-key': API_KEY, 'x-rapidapi-host': API_HOST }
+                });
+                const data = await res.json();
+                
+                if(data.data && data.data.play) {
+                    let c = parseInt(localStorage.getItem('tk_c_final') || 0);
+                    localStorage.setItem('tk_c_final', c + 1);
+                    updateCount();
+                    
+                    globalVideoUrl = data.data.play;
+                    document.getElementById('videoPreview').src = globalVideoUrl;
+                    result.style.display = 'block';
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else { alert("لم نتمكن من العثور على الفيديو، تأكد من صحة الرابط."); }
+            } catch(e) { alert("خطأ في الاتصال بالسيرفر"); }
+            loading.style.display = 'none';
+        }
+
+        async function forceDownload() {
+            if(!globalVideoUrl) return;
+            const btn = document.getElementById('realDownloadBtn');
+            btn.innerHTML = "⏳ جاري الحفظ...";
+            try {
+                const response = await fetch(globalVideoUrl);
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `tiktok_video_${Date.now()}.mp4`;
+                document.body.appendChild(a);
+                a.click();
+                btn.innerHTML = "✅ تم الحفظ بنجاح";
+                setTimeout(() => { btn.innerHTML = "📥 حفظ في الاستوديو"; }, 3000);
+            } catch (error) {
+                window.open(globalVideoUrl, '_blank');
+            }
+        }
+
+        window.onload = function() {
+            updateCount();
+            document.getElementById('videoUrl').value = "";
+        }
+    </script>
+
+    <script src="https://pl28496644.effectivegatecpm.com/34/c8/da/34c8da04dcbafe7aee4b6c266144c73e.js"></script>
+
+</body>
+</html>
