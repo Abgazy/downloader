@@ -33,7 +33,24 @@
             border-radius: 10px; overflow: hidden;
         }
 
-        .usage-counter { background: #fff9e6; padding: 10px; border-radius: 8px; text-align: center; margin-bottom: 20px; font-size: 0.85em; border: 1px solid #ffeeba; color: #856404; }
+        .visitor-counter { 
+            background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+            padding: 12px; 
+            border-radius: 10px; 
+            text-align: center; 
+            margin-bottom: 20px; 
+            font-size: 0.9em; 
+            border: 1px solid #b39ddb;
+            color: #4a148c;
+            font-weight: 600;
+        }
+        
+        .visitor-counter .count {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #6a1b9a;
+            margin: 0 5px;
+        }
         
         .btn {
             width: 100%; padding: 16px; border: none; border-radius: 12px;
@@ -95,7 +112,9 @@
 
         <div class="top-section">
             <h1>🎬 TikTok Saver</h1>
-            <div class="usage-counter" id="usageCounter">📊 جاري التحقق من الصلاحية...</div>
+            <div class="visitor-counter" id="visitorCounter">
+                👥 عدد الزيارات: <span class="count" id="visitCount">0</span>
+            </div>
             <button type="button" class="btn" onclick="downloadVideo()">🚀 ابدأ التحميل الآن</button>
             
             <div class="mid-links">
@@ -119,13 +138,21 @@
     </div>
 
     <script>
-        // 🔐 استخدام Cloudflare Worker الآمن بدلاً من المفتاح المكشوف
         const WORKER_URL = 'https://tiktok-proxy.nasralhrby370.workers.dev';
         let globalVideoUrl = "";
 
-        function updateCount() {
-            let c = localStorage.getItem('tk_c_final') || 0;
-            document.getElementById('usageCounter').innerHTML = `📊 متاح لك اليوم: ${200 - c} تحميل مجاني`;
+        // 📊 عداد الزيارات
+        function updateVisitorCount() {
+            let totalVisits = parseInt(localStorage.getItem('total_visits') || '0');
+            let hasVisitedBefore = sessionStorage.getItem('visited_this_session');
+            
+            if (!hasVisitedBefore) {
+                totalVisits++;
+                localStorage.setItem('total_visits', totalVisits.toString());
+                sessionStorage.setItem('visited_this_session', 'true');
+            }
+            
+            document.getElementById('visitCount').textContent = totalVisits.toLocaleString('ar-EG');
         }
 
         async function downloadVideo() {
@@ -143,15 +170,10 @@
             result.style.display = 'none';
             
             try {
-                // ✅ الاتصال الآمن عبر Cloudflare Worker
                 const res = await fetch(`${WORKER_URL}?url=${encodeURIComponent(url)}`);
                 const data = await res.json();
                 
                 if(data.data && data.data.play) {
-                    let c = parseInt(localStorage.getItem('tk_c_final') || 0);
-                    localStorage.setItem('tk_c_final', c + 1);
-                    updateCount();
-                    
                     globalVideoUrl = data.data.play;
                     document.getElementById('videoPreview').src = globalVideoUrl;
                     result.style.display = 'block';
@@ -196,7 +218,7 @@
         }
 
         window.onload = function() {
-            updateCount();
+            updateVisitorCount();
             document.getElementById('videoUrl').value = "";
         }
     </script>
