@@ -33,23 +33,16 @@
             border-radius: 10px; overflow: hidden;
         }
 
-        .visitor-counter { 
-            background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
-            padding: 12px; 
-            border-radius: 10px; 
-            text-align: center; 
+        .ad-container-middle {
+            width: 100%; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center;
+            min-height: 90px; 
             margin-bottom: 20px; 
-            font-size: 0.9em; 
-            border: 1px solid #b39ddb;
-            color: #4a148c;
-            font-weight: 600;
-        }
-        
-        .visitor-counter .count {
-            font-size: 1.3em;
-            font-weight: bold;
-            color: #6a1b9a;
-            margin: 0 5px;
+            background: #fdfdfd;
+            border-radius: 10px; 
+            overflow: hidden;
         }
         
         .btn {
@@ -112,9 +105,21 @@
 
         <div class="top-section">
             <h1>🎬 TikTok Saver</h1>
-            <div class="visitor-counter" id="visitorCounter">
-                👥 عدد الزيارات: <span class="count" id="visitCount">0</span>
+            
+            <!-- 📢 الإعلان الجديد بدلاً من عداد الزيارات -->
+            <div class="ad-container-middle">
+                <script type="text/javascript">
+                    atOptions = {
+                        'key' : 'e2e1825e36ae3efe15e7f84282c259b9',
+                        'format' : 'iframe',
+                        'height' : 90,
+                        'width' : 728,
+                        'params' : {}
+                    };
+                </script>
+                <script type="text/javascript" src="https://www.highperformanceformat.com/e2e1825e36ae3efe15e7f84282c259b9/invoke.js"></script>
             </div>
+
             <button type="button" class="btn" onclick="downloadVideo()">🚀 ابدأ التحميل الآن</button>
             
             <div class="mid-links">
@@ -140,20 +145,6 @@
     <script>
         const WORKER_URL = 'https://tiktok-proxy.nasralhrby370.workers.dev';
         let globalVideoUrl = "";
-
-        // 📊 عداد الزيارات
-        function updateVisitorCount() {
-            let totalVisits = parseInt(localStorage.getItem('total_visits') || '0');
-            let hasVisitedBefore = sessionStorage.getItem('visited_this_session');
-            
-            if (!hasVisitedBefore) {
-                totalVisits++;
-                localStorage.setItem('total_visits', totalVisits.toString());
-                sessionStorage.setItem('visited_this_session', 'true');
-            }
-            
-            document.getElementById('visitCount').textContent = totalVisits.toLocaleString('ar-EG');
-        }
 
         async function downloadVideo() {
             const input = document.getElementById('videoUrl');
@@ -218,7 +209,6 @@
         }
 
         window.onload = function() {
-            updateVisitorCount();
             document.getElementById('videoUrl').value = "";
         }
     </script>
