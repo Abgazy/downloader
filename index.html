@@ -106,7 +106,6 @@
         <div class="top-section">
             <h1>🎬 TikTok Saver</h1>
             
-            <!-- 📢 الإعلان الجديد بدلاً من عداد الزيارات -->
             <div class="ad-container-middle">
                 <script type="text/javascript">
                     atOptions = {
@@ -164,8 +163,9 @@
                 const res = await fetch(`${WORKER_URL}?url=${encodeURIComponent(url)}`);
                 const data = await res.json();
                 
-                if(data.data && data.data.play) {
-                    globalVideoUrl = data.data.play;
+                // --- التعديل هنا ليتوافق مع الـ Worker الجديد ---
+                if(data.success && data.video) {
+                    globalVideoUrl = data.video; 
                     document.getElementById('videoPreview').src = globalVideoUrl;
                     result.style.display = 'block';
                     window.scrollTo({ top: 0, behavior: 'smooth' });
