@@ -161,17 +161,19 @@
             
             try {
                 const res = await fetch(`${WORKER_URL}?url=${encodeURIComponent(url)}`);
-                const data = await res.json();
+                const resultData = await res.json();
                 
-                // --- التعديل هنا ليتوافق مع الـ Worker الجديد ---
-                if(data.success && data.video) {
-                    globalVideoUrl = data.video; 
+                // --- الجزء المعدل للاستلام فقط ليتوافق مع الـ Worker ---
+                if(resultData.success && resultData.data && resultData.data.play) {
+                    globalVideoUrl = resultData.data.play; 
                     document.getElementById('videoPreview').src = globalVideoUrl;
                     result.style.display = 'block';
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 } else { 
                     alert("لم نتمكن من العثور على الفيديو، تأكد من صحة الرابط."); 
                 }
+                // ---------------------------------------------------
+                
             } catch(e) { 
                 console.error(e);
                 alert("خطأ في الاتصال بالسيرفر"); 
