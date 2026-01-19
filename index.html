@@ -184,7 +184,6 @@
             font-weight: bold; color: #fe2c55; font-size: 0.9em; 
         }
         
-        /* ✅ قسم SEO Content */
         .seo-content {
             margin-top: 40px;
             padding: 25px;
@@ -193,65 +192,20 @@
             color: #555;
             font-size: 0.9em;
             line-height: 1.8;
-            max-width: 500px; /* ضمان تناسق العرض مع الحاوية */
+            max-width: 500px;
         }
         
-        .seo-content h2 {
-            color: #333;
-            font-size: 1.3em;
-            margin-bottom: 15px;
-            margin-top: 25px;
-        }
+        .seo-content h2 { color: #333; font-size: 1.3em; margin-bottom: 15px; margin-top: 25px; }
+        .seo-content h2:first-of-type { margin-top: 0; }
+        .seo-content p { margin-bottom: 15px; text-align: justify; }
+        .seo-content strong { color: #fe2c55; font-weight: 600; }
         
-        .seo-content h2:first-of-type {
-            margin-top: 0;
-        }
+        .feature-list { background: white; padding: 15px 20px; border-radius: 10px; margin: 20px 0; border-right: 4px solid #fe2c55; }
+        .feature-list p { margin: 8px 0; padding-right: 20px; position: relative; }
+        .feature-list p:before { content: "✓"; color: #28a745; font-weight: bold; position: absolute; right: 0; }
         
-        .seo-content p {
-            margin-bottom: 15px;
-            text-align: justify;
-        }
-        
-        .seo-content strong {
-            color: #fe2c55;
-            font-weight: 600;
-        }
-        
-        .feature-list {
-            background: white;
-            padding: 15px 20px;
-            border-radius: 10px;
-            margin: 20px 0;
-            border-right: 4px solid #fe2c55;
-        }
-        
-        .feature-list p {
-            margin: 8px 0;
-            padding-right: 20px;
-            position: relative;
-        }
-        
-        .feature-list p:before {
-            content: "✓";
-            color: #28a745;
-            font-weight: bold;
-            position: absolute;
-            right: 0;
-        }
-        
-        .steps {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px 0;
-        }
-        
-        .steps p {
-            padding: 10px 15px;
-            margin: 8px 0;
-            background: #f0f0f0;
-            border-radius: 8px;
-        }
+        .steps { background: white; padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .steps p { padding: 10px 15px; margin: 8px 0; background: #f0f0f0; border-radius: 8px; }
     </style>
 </head>
 <body>
@@ -306,7 +260,9 @@
             <p style="text-align: center; margin-bottom: 10px; color: #555; font-size: 0.9em;">الصق الرابط بالأسفل 👇</p>
             <input type="text" id="videoUrl" placeholder="https://www.tiktok.com/@username/video/1234567890123456789" autocomplete="off" aria-label="أدخل رابط فيديو تيك توك هنا">
         </div>
-    </div> <section class="seo-content" itemscope itemtype="https://schema.org/Article">
+    </div>
+
+    <section class="seo-content" itemscope itemtype="https://schema.org/Article">
         <h2 itemprop="headline">ما هو TikTok Saver - أفضل أداة لتحميل فيديوهات تيك توك؟</h2>
         <p itemprop="description">
             <strong>TikTok Saver</strong> هي أداة مجانية 100% تتيح لك تحميل وحفظ فيديوهات تيك توك بدون علامة مائية بجودة عالية HD. 
