@@ -158,6 +158,7 @@
             width: 100%; padding: 14px; border: 2px solid #fe2c55; border-radius: 10px;
             font-size: 15px; direction: ltr; text-align: left; background: #fff; outline: none;
             transition: border-color 0.3s ease;
+            margin-bottom: 15px;
         }
         
         input[type="url"]:focus {
@@ -286,6 +287,9 @@
                 <script type="text/javascript" src="https://www.highperformanceformat.com/e2e1825e36ae3efe15e7f84282c259b9/invoke.js"></script>
             </div>
 
+            <p style="text-align: center; margin-bottom: 10px; color: #555; font-size: 0.9em;">الصق الرابط بالأسفل 👇</p>
+            <input type="url" id="videoUrl" placeholder="https://www.tiktok.com/@username/video/..." autocomplete="off" aria-label="أدخل رابط فيديو تيك توك هنا">
+
             <button type="button" class="btn" onclick="downloadVideo()" aria-label="ابدأ تحميل فيديو تيك توك الآن">🚀 ابدأ التحميل الآن</button>
             
             <nav class="mid-links" role="navigation" aria-label="روابط الصفحات الرئيسية">
@@ -300,11 +304,6 @@
                 <video id="videoPreview" controls playsinline aria-label="معاينة فيديو تيك توك"></video>
                 <button id="realDownloadBtn" class="dl-link" onclick="forceDownload()" aria-label="حفظ الفيديو في الاستوديو">📥 حفظ في الاستوديو</button>
             </div>
-        </div>
-
-        <div class="bottom-section">
-            <p style="text-align: center; margin-bottom: 10px; color: #555; font-size: 0.9em;">الصق الرابط بالأسفل 👇</p>
-            <input type="url" id="videoUrl" placeholder="https://www.tiktok.com/@username/video/1234567890123456789" autocomplete="off" aria-label="أدخل رابط فيديو تيك توك هنا">
         </div>
     </div> 
     
@@ -378,7 +377,7 @@
             let url = input.value.trim().replace(/^[\/]+/, ''); 
             
             if(!url) { 
-                alert("الرجاء لصق رابط الفيديو أولاً في الخانة بالأسفل"); 
+                alert("الرجاء لصق رابط الفيديو أولاً"); 
                 return; 
             }
             
