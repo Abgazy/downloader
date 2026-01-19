@@ -119,8 +119,8 @@
     </div>
 
     <script>
-        const API_KEY = 'c107978669msh8c9b80d11a0150dp1b0b56jsn6b0f9128b487';
-        const API_HOST = 'tiktok-download-video1.p.rapidapi.com';
+        // 🔐 استخدام Cloudflare Worker الآمن بدلاً من المفتاح المكشوف
+        const WORKER_URL = 'https://tiktok-proxy.nasralhrby370.workers.dev';
         let globalVideoUrl = "";
 
         function updateCount() {
@@ -131,33 +131,48 @@
         async function downloadVideo() {
             const input = document.getElementById('videoUrl');
             const url = input.value.trim();
-            if(!url) { alert("الرجاء لصق رابط الفيديو أولاً في الخانة بالأسفل"); return; }
+            
+            if(!url) { 
+                alert("الرجاء لصق رابط الفيديو أولاً في الخانة بالأسفل"); 
+                return; 
+            }
+            
             const loading = document.getElementById('loading');
             const result = document.getElementById('result');
             loading.style.display = 'block';
             result.style.display = 'none';
+            
             try {
-                const res = await fetch(`https://${API_HOST}/getVideo?url=${encodeURIComponent(url)}`, {
-                    headers: { 'x-rapidapi-key': API_KEY, 'x-rapidapi-host': API_HOST }
-                });
+                // ✅ الاتصال الآمن عبر Cloudflare Worker
+                const res = await fetch(`${WORKER_URL}?url=${encodeURIComponent(url)}`);
                 const data = await res.json();
+                
                 if(data.data && data.data.play) {
                     let c = parseInt(localStorage.getItem('tk_c_final') || 0);
                     localStorage.setItem('tk_c_final', c + 1);
                     updateCount();
+                    
                     globalVideoUrl = data.data.play;
                     document.getElementById('videoPreview').src = globalVideoUrl;
                     result.style.display = 'block';
                     window.scrollTo({ top: 0, behavior: 'smooth' });
-                } else { alert("لم نتمكن من العثور على الفيديو، تأكد من صحة الرابط."); }
-            } catch(e) { alert("خطأ في الاتصال بالسيرفر"); }
+                } else { 
+                    alert("لم نتمكن من العثور على الفيديو، تأكد من صحة الرابط."); 
+                }
+            } catch(e) { 
+                console.error(e);
+                alert("خطأ في الاتصال بالسيرفر"); 
+            }
+            
             loading.style.display = 'none';
         }
 
         async function forceDownload() {
             if(!globalVideoUrl) return;
+            
             const btn = document.getElementById('realDownloadBtn');
             btn.innerHTML = "⏳ جاري الحفظ...";
+            
             try {
                 const response = await fetch(globalVideoUrl);
                 const blob = await response.blob();
@@ -167,9 +182,17 @@
                 a.download = `tiktok_video_${Date.now()}.mp4`;
                 document.body.appendChild(a);
                 a.click();
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+                
                 btn.innerHTML = "✅ تم الحفظ بنجاح";
-                setTimeout(() => { btn.innerHTML = "📥 حفظ في الاستوديو"; }, 3000);
-            } catch (error) { window.open(globalVideoUrl, '_blank'); }
+                setTimeout(() => { 
+                    btn.innerHTML = "📥 حفظ في الاستوديو"; 
+                }, 3000);
+            } catch (error) { 
+                window.open(globalVideoUrl, '_blank'); 
+                btn.innerHTML = "📥 حفظ في الاستوديو";
+            }
         }
 
         window.onload = function() {
