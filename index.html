@@ -4,14 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TikTok Saver | تحميل فيديوهات تيك توك بدون علامة مائية</title>
-    
-    <meta name="google-site-verification" content="-_DH4azbAQIC9mQDn3fc6p86_SHVq_fZzWgpaQeJ934" />
-
     <link rel="icon" type="image/png" href="IMG_3805.png">
     <link rel="apple-touch-icon" href="IMG_3805.png">
-    <meta name="description" content="أفضل أداة مجانية لتحميل فيديوهات تيك توك بدون علامة مائية بجودة عالية">
-    <meta name="keywords" content="تحميل تيك توك, بدون علامة مائية, TikTok Downloader, حفظ فيديوهات">
-
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body {
@@ -26,25 +20,6 @@
             display: flex; flex-direction: column; position: relative;
         }
         h1 { text-align: center; color: #333; margin: 15px 0; font-size: 1.6em; }
-        
-        .ad-container-top {
-            width: 100%; display: flex; justify-content: center; align-items: center;
-            min-height: 50px; margin-bottom: 10px; background: #fdfdfd;
-            border-radius: 10px; overflow: hidden;
-        }
-
-        .ad-container-middle {
-            width: 100%; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center;
-            min-height: 90px; 
-            margin-bottom: 20px; 
-            background: #fdfdfd;
-            border-radius: 10px; 
-            overflow: hidden;
-        }
-        
         .btn {
             width: 100%; padding: 16px; border: none; border-radius: 12px;
             background: linear-gradient(135deg, #fe2c55 0%, #ee1d52 100%);
@@ -52,90 +27,46 @@
             box-shadow: 0 4px 15px rgba(254, 44, 85, 0.3);
             margin-bottom: 20px;
         }
-
         .mid-links {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px dashed #eee;
+            display: flex; justify-content: center; gap: 12px; margin-bottom: 20px;
+            padding-bottom: 15px; border-bottom: 1px dashed #eee;
         }
-        .mid-links a {
-            color: #999;
-            text-decoration: none;
-            font-size: 0.8em;
-            font-weight: 500;
-        }
-        .mid-links a:hover { color: #fe2c55; }
-
-        .bottom-section { margin-top: 10px; }
+        .mid-links a { color: #999; text-decoration: none; font-size: 0.8em; }
         input[type="text"] {
             width: 100%; padding: 14px; border: 2px solid #fe2c55; border-radius: 10px;
             font-size: 15px; direction: ltr; text-align: left; background: #fff; outline: none;
         }
-
         .result { margin-top: 20px; display: none; text-align: center; }
-        video { width: 100%; border-radius: 12px; background: #000; }
-        
+        video { width: 100%; border-radius: 12px; background: #000; margin-bottom: 10px; }
         .dl-link { 
-            display: inline-block; width: 100%; margin-top: 15px; padding: 14px; 
+            display: inline-block; width: 100%; padding: 14px; 
             background: #28a745; color: white; text-decoration: none; 
             border-radius: 10px; font-weight: bold; font-size: 16px; cursor: pointer; border: none;
         }
-
-        .loading { display: none; text-align: center; margin: 15px 0; font-weight: bold; color: #fe2c55; font-size: 0.9em; }
+        .loading { display: none; text-align: center; margin: 15px 0; font-weight: bold; color: #fe2c55; }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <div class="ad-container-top">
-            <script type="text/javascript">
-                atOptions = {
-                    'key' : '395e4252f579922a8806b892c2934b47',
-                    'format' : 'iframe',
-                    'height' : 50,
-                    'width' : 320,
-                    'params' : {}
-                };
-            </script>
-            <script type="text/javascript" src="https://www.highperformanceformat.com/395e4252f579922a8806b892c2934b47/invoke.js"></script>
+        <h1>🎬 TikTok Saver</h1>
+        <button type="button" class="btn" onclick="downloadVideo()">🚀 ابدأ التحميل الآن</button>
+        
+        <div class="mid-links">
+            <a href="about.html">من نحن</a>
+            <a href="privacy.html">الخصوصية</a>
+            <a href="terms.html">الشروط</a>
+            <a href="contact.html">اتصل بنا</a>
         </div>
 
-        <div class="top-section">
-            <h1>🎬 TikTok Saver</h1>
-            
-            <div class="ad-container-middle">
-                <script type="text/javascript">
-                    atOptions = {
-                        'key' : 'e2e1825e36ae3efe15e7f84282c259b9',
-                        'format' : 'iframe',
-                        'height' : 90,
-                        'width' : 728,
-                        'params' : {}
-                    };
-                </script>
-                <script type="text/javascript" src="https://www.highperformanceformat.com/e2e1825e36ae3efe15e7f84282c259b9/invoke.js"></script>
-            </div>
-
-            <button type="button" class="btn" onclick="downloadVideo()">🚀 ابدأ التحميل الآن</button>
-            
-            <div class="mid-links">
-                <a href="about.html">من نحن</a>
-                <a href="privacy.html">الخصوصية</a>
-                <a href="terms.html">الشروط</a>
-                <a href="contact.html">اتصل بنا</a>
-            </div>
-
-            <div id="loading" class="loading">⏳ جاري معالجة الرابط...</div>
-            <div id="result" class="result">
-                <video id="videoPreview" controls playsinline></video>
-                <button id="realDownloadBtn" class="dl-link" onclick="forceDownload()">📥 حفظ في الاستوديو</button>
-            </div>
+        <div id="loading" class="loading">⏳ جاري جلب الفيديو...</div>
+        
+        <div id="result" class="result">
+            <video id="videoPreview" controls playsinline></video>
+            <button id="realDownloadBtn" class="dl-link" onclick="forceDownload()">📥 حفظ في الاستوديو</button>
         </div>
 
-        <div class="bottom-section">
+        <div style="margin-top: 20px;">
             <p style="text-align: center; margin-bottom: 10px; color: #555; font-size: 0.9em;">الصق الرابط بالأسفل 👇</p>
             <input type="text" id="videoUrl" placeholder="https://www.tiktok.com/..." autocomplete="off">
         </div>
@@ -147,12 +78,10 @@
 
         async function downloadVideo() {
             const input = document.getElementById('videoUrl');
-            const url = input.value.trim();
+            // تنظيف الرابط من أي شرطات مائلة في البداية قد يسببها المتصفح
+            let rawUrl = input.value.trim().replace(/^[\/]+/, '');
             
-            if(!url) { 
-                alert("الرجاء لصق رابط الفيديو أولاً في الخانة بالأسفل"); 
-                return; 
-            }
+            if(!rawUrl) { alert("الرجاء لصق الرابط أولاً"); return; }
             
             const loading = document.getElementById('loading');
             const result = document.getElementById('result');
@@ -160,33 +89,30 @@
             result.style.display = 'none';
             
             try {
-                const res = await fetch(`${WORKER_URL}?url=${encodeURIComponent(url)}`);
-                const resultData = await res.json();
+                const res = await fetch(`${WORKER_URL}?url=${encodeURIComponent(rawUrl)}`);
+                const responseData = await res.json();
                 
-                // --- الجزء المعدل للاستلام فقط ليتوافق مع الـ Worker ---
-                if(resultData.success && resultData.data && resultData.data.play) {
-                    globalVideoUrl = resultData.data.play; 
-                    document.getElementById('videoPreview').src = globalVideoUrl;
+                // التأكد من استلام الرابط من المسار الصحيح (data.play)
+                if(responseData.success && responseData.data && responseData.data.play) {
+                    globalVideoUrl = responseData.data.play; 
+                    const videoElement = document.getElementById('videoPreview');
+                    videoElement.src = globalVideoUrl;
+                    videoElement.load(); // تحديث المشغل
                     result.style.display = 'block';
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 } else { 
-                    alert("لم نتمكن من العثور على الفيديو، تأكد من صحة الرابط."); 
+                    alert("عذراً، لم نتمكن من استخراج رابط الفيديو."); 
                 }
-                // ---------------------------------------------------
-                
             } catch(e) { 
-                console.error(e);
-                alert("خطأ في الاتصال بالسيرفر"); 
+                alert("فشل الاتصال بالخادم"); 
             }
-            
             loading.style.display = 'none';
         }
 
         async function forceDownload() {
             if(!globalVideoUrl) return;
-            
             const btn = document.getElementById('realDownloadBtn');
-            btn.innerHTML = "⏳ جاري الحفظ...";
+            btn.innerHTML = "⏳ جاري التحميل...";
             
             try {
                 const response = await fetch(globalVideoUrl);
@@ -194,28 +120,18 @@
                 const url = window.URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = `tiktok_video_${Date.now()}.mp4`;
+                a.download = `tiktok_${Date.now()}.mp4`;
                 document.body.appendChild(a);
                 a.click();
                 document.body.removeChild(a);
-                window.URL.revokeObjectURL(url);
-                
-                btn.innerHTML = "✅ تم الحفظ بنجاح";
-                setTimeout(() => { 
-                    btn.innerHTML = "📥 حفظ في الاستوديو"; 
-                }, 3000);
-            } catch (error) { 
-                window.open(globalVideoUrl, '_blank'); 
+                btn.innerHTML = "✅ تم الحفظ";
+                setTimeout(() => { btn.innerHTML = "📥 حفظ في الاستوديو"; }, 2000);
+            } catch (e) {
+                // إذا فشل التحميل المباشر بسبب الـ CORS، نفتح الرابط في نافذة جديدة
+                window.open(globalVideoUrl, '_blank');
                 btn.innerHTML = "📥 حفظ في الاستوديو";
             }
         }
-
-        window.onload = function() {
-            document.getElementById('videoUrl').value = "";
-        }
     </script>
-
-    <script src="https://pl28496644.effectivegatecpm.com/34/c8/da/34c8da04dcbafe7aee4b6c266144c73e.js"></script>
-
 </body>
 </html>
