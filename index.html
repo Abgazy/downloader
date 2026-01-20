@@ -123,6 +123,16 @@
             overflow: hidden;
         }
         
+        /* ✅ تطبيق الحل الذكي حقك */
+        .input-area {
+            position: relative;
+            z-index: 50;
+            background: white;
+            isolation: isolate;
+            width: 100%;
+            overflow: hidden;
+        }
+
         .btn {
             width: 100%; padding: 16px; border: none; border-radius: 12px;
             background: linear-gradient(135deg, #fe2c55 0%, #ee1d52 100%);
@@ -153,7 +163,6 @@
         }
         .mid-links a:hover { color: #fe2c55; }
 
-        .bottom-section { margin-top: 10px; }
         input[type="url"] {
             width: 100%; padding: 14px; border: 2px solid #fe2c55; border-radius: 10px;
             font-size: 15px; direction: ltr; text-align: left; background: #fff; outline: none;
@@ -175,130 +184,51 @@
             transition: all 0.3s ease;
         }
         
-        .dl-link:hover {
-            background: #218838;
-            transform: translateY(-2px);
-        }
-
         .loading { 
             display: none; text-align: center; margin: 15px 0; 
             font-weight: bold; color: #fe2c55; font-size: 0.9em; 
         }
         
-        /* ✅ قسم SEO Content */
         .seo-content {
-            margin-top: 10px;
-            padding: 25px;
-            background: #f9f9f9;
-            border-radius: 15px;
-            color: #555;
-            font-size: 0.9em;
-            line-height: 1.8;
-            max-width: 500px; /* ضمان العرض */
+            margin-top: 10px; padding: 25px; background: #f9f9f9;
+            border-radius: 15px; color: #555; font-size: 0.9em;
+            line-height: 1.8; max-width: 500px;
         }
         
-        .seo-content h2 {
-            color: #333;
-            font-size: 1.3em;
-            margin-bottom: 15px;
-            margin-top: 25px;
-        }
-        
-        .seo-content h2:first-of-type {
-            margin-top: 0;
-        }
-        
-        .seo-content p {
-            margin-bottom: 15px;
-            text-align: justify;
-        }
-        
-        .seo-content strong {
-            color: #fe2c55;
-            font-weight: 600;
-        }
-        
-        .feature-list {
-            background: white;
-            padding: 15px 20px;
-            border-radius: 10px;
-            margin: 20px 0;
-            border-right: 4px solid #fe2c55;
-        }
-        
-        .feature-list p {
-            margin: 8px 0;
-            padding-right: 20px;
-            position: relative;
-        }
-        
-        .feature-list p:before {
-            content: "✓";
-            color: #28a745;
-            font-weight: bold;
-            position: absolute;
-            right: 0;
-        }
-        
-        .steps {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px 0;
-        }
-        
-        .steps p {
-            padding: 10px 15px;
-            margin: 8px 0;
-            background: #f0f0f0;
-            border-radius: 8px;
-        }
+        .seo-content h2 { color: #333; font-size: 1.3em; margin-bottom: 15px; margin-top: 25px; }
+        .feature-list { background: white; padding: 15px 20px; border-radius: 10px; margin: 20px 0; border-right: 4px solid #fe2c55; }
+        .steps { background: white; padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .steps p { padding: 10px 15px; margin: 8px 0; background: #f0f0f0; border-radius: 8px; }
     </style>
 </head>
 <body>
 
     <div class="container">
         <div class="ad-container-top">
-            <script type="text/javascript">
-                atOptions = {
-                    'key' : '395e4252f579922a8806b892c2934b47',
-                    'format' : 'iframe',
-                    'height' : 50,
-                    'width' : 320,
-                    'params' : {}
-                };
-            </script>
+            <script type="text/javascript">atOptions = {'key' : '395e4252f579922a8806b892c2934b47','format' : 'iframe','height' : 50,'width' : 320,'params' : {}};</script>
             <script type="text/javascript" src="https://www.highperformanceformat.com/395e4252f579922a8806b892c2934b47/invoke.js"></script>
         </div>
 
         <div class="top-section">
             <h1>🎬 TikTok Saver</h1>
-            
             <div class="ad-container-middle">
-                <script type="text/javascript">
-                    atOptions = {
-                        'key' : 'e2e1825e36ae3efe15e7f84282c259b9',
-                        'format' : 'iframe',
-                        'height' : 90,
-                        'width' : 728,
-                        'params' : {}
-                    };
-                </script>
+                <script type="text/javascript">atOptions = {'key' : 'e2e1825e36ae3efe15e7f84282c259b9','format' : 'iframe','height' : 90,'width' : 728,'params' : {}};</script>
                 <script type="text/javascript" src="https://www.highperformanceformat.com/e2e1825e36ae3efe15e7f84282c259b9/invoke.js"></script>
             </div>
-        </div> <div class="input-area" style="width: 100%;"> <p style="text-align: center; margin-bottom: 10px; color: #555; font-size: 0.9em;">الصق الرابط بالأسفل 👇</p>
-            <input type="url" id="v_url_clean" placeholder="https://www.tiktok.com/..." autocomplete="off">
+        </div> 
 
+        <div class="input-area"> <p style="text-align: center; margin-bottom: 10px; color: #555; font-size: 0.9em;">الصق الرابط بالأسفل 👇</p>
+            <input type="url" id="v_url_clean" placeholder="https://www.tiktok.com/..." autocomplete="off">
             <button type="button" class="btn" onclick="downloadVideo()">🚀 ابدأ التحميل الآن</button>
         </div>
 
-        <div class="bottom-part"> <nav class="mid-links">
+        <div class="bottom-part"> 
+            <nav class="mid-links">
                 <a href="about.html">من نحن</a>
                 <a href="privacy.html">الخصوصية</a>
                 <a href="terms.html">الشروط</a>
                 <a href="contact.html">اتصل بنا</a>
             </nav>
-
             <div id="loading" class="loading">⏳ جاري معالجة الرابط...</div>
             <div id="result" class="result">
                 <video id="videoPreview" controls playsinline></video>
@@ -307,15 +237,11 @@
         </div>
     </div> 
 
-    <br><br><br><br><br>
+    <br><br><br>
     
-    <section class="seo-content" itemscope itemtype="https://schema.org/Article">
-        <h2 itemprop="headline">ما هو TikTok Saver - أفضل أداة لتحميل فيديوهات تيك توك؟</h2>
-        <p itemprop="description">
-            <strong>TikTok Saver</strong> هي أداة مجانية 100% تتيح لك تحميل وحفظ فيديوهات تيك توك بدون علامة مائية بجودة عالية HD. 
-            لا تحتاج لتثبيت أي برامج أو تطبيقات على جهازك - فقط الصق رابط الفيديو من TikTok وحمّله مباشرة بنقرة واحدة. 
-            نوفر لك 200 تحميل مجاني يومياً بسرعة فائقة وأمان كامل.
-        </p>
+    <section class="seo-content">
+        <h2>ما هو TikTok Saver - أفضل أداة لتحميل فيديوهات تيك توك؟</h2>
+        <p><strong>TikTok Saver</strong> هي أداة مجانية 100% تتيح لك تحميل وحفظ فيديوهات تيك توك بدون علامة مائية بجودة عالية HD. لا تحتاج لتثبيت أي برامج أو تطبيقات على جهازك - فقط الصق رابط الفيديو من TikTok وحمّله مباشرة بنقرة واحدة. نوفر لك 200 تحميل مجاني يومياً بسرعة فائقة وأمان كامل.</p>
 
         <h2>لماذا تختار TikTok Saver لتحميل فيديوهات تيك توك؟</h2>
         <div class="feature-list">
@@ -338,36 +264,16 @@
         </div>
 
         <h2>هل تحميل فيديوهات تيك توك قانوني وآمن؟</h2>
-        <p>
-            نعم، استخدام TikTok Saver آمن تماماً وقانوني للاستخدام الشخصي. نحن نوفر فقط الأداة التقنية لتحميل الفيديوهات المتاحة للجمهور. 
-            ننصحك دائماً باحترام حقوق الملكية الفكرية وعدم إعادة نشر المحتوى المحمل دون إذن من صاحبه. 
-            للمزيد من المعلومات، راجع <a href="terms.html" style="color: #fe2c55;">شروط الاستخدام</a> و<a href="privacy.html" style="color: #fe2c55;">سياسة الخصوصية</a>.
-        </p>
+        <p>نعم، استخدام TikTok Saver آمن تماماً وقانوني للاستخدام الشخصي. نحن نوفر فقط الأداة التقنية لتحميل الفيديوهات المتاحة للجمهور. ننصحك دائماً باحترام حقوق الملكية الفكرية وعدم إعادة نشر المحتوى المحمل دون إذن من صاحبه.</p>
 
         <h2>أسئلة شائعة حول تحميل فيديوهات تيك توك</h2>
-        <p>
-            <strong>س: هل أحتاج لتسجيل دخول في TikTok؟</strong><br>
-            ج: لا، لا تحتاج لتسجيل دخول أو إنشاء حساب. فقط انسخ رابط أي فيديو عام وحمّله.
-        </p>
-        <p>
-            <strong>س: ما هي جودة الفيديوهات المحملة؟</strong><br>
-            ج: نوفر أفضل جودة متاحة للفيديو، قد تصل إلى Full HD 1080p حسب الفيديو الأصلي.
-        </p>
-        <p>
-            <strong>س: كم عدد الفيديوهات التي يمكنني تحميلها؟</strong><br>
-            ج: يمكنك تحميل حتى 200 فيديو مجاناً كل يوم بدون أي قيود إضافية.
-        </p>
-        <p>
-            <strong>س: هل يعمل الموقع على الجوال؟</strong><br>
-            ج: نعم! TikTok Saver متوافق بالكامل مع جميع الأجهزة - آيفون، أندرويد، كمبيوتر، وتابلت.
-        </p>
+        <p><strong>س: هل أحتاج لتسجيل دخول في TikTok؟</strong><br>ج: لا، لا تحتاج لتسجيل دخول أو إنشاء حساب. فقط انسخ رابط أي فيديو عام وحمّله.</p>
+        <p><strong>س: ما هي جودة الفيديوهات المحملة؟</strong><br>ج: نوفر أفضل جودة متاحة للفيديو، قد تصل إلى Full HD 1080p حسب الفيديو الأصلي.</p>
+        <p><strong>س: كم عدد الفيديوهات التي يمكنني تحميلها؟</strong><br>ج: يمكنك تحميل حتى 200 فيديو مجاناً كل يوم بدون أي قيود إضافية.</p>
+        <p><strong>س: هل يعمل الموقع على الجوال؟</strong><br>ج: نعم! TikTok Saver متوافق بالكامل مع جميع الأجهزة - آيفون، أندرويد، كمبيوتر، وتابلت.</p>
 
         <h2>TikTok Saver - خدمة تحميل تيك توك الموثوقة في 2026</h2>
-        <p>
-            منذ إطلاقنا، ساعدنا آلاف المستخدمين في حفظ فيديوهاتهم المفضلة من تيك توك. 
-            نحن نفخر بتقديم خدمة سريعة وموثوقة وآمنة بدون أي تكاليف خفية. 
-            جرّب TikTok Saver الآن واستمتع بتحميل فيديوهات TikTok بكل سهولة!
-        </p>
+        <p>منذ إطلاقنا، ساعدنا آلاف المستخدمين في حفظ فيديوهاتهم المفضلة من تيك توك. نحن نفخر بتقديم خدمة سريعة وموثوقة وآمنة بدون أي تكاليف خفية. جرّب TikTok Saver الآن واستمتع بتحميل فيديوهات TikTok بكل سهولة!</p>
     </section>
 
     <script>
@@ -375,18 +281,14 @@
         let globalVideoUrl = "";
 
         async function downloadVideo() {
-            const input = document.getElementById('v_url_clean'); // تم تغيير الـ ID هنا
+            const input = document.getElementById('v_url_clean');
             let url = input.value.trim();
-            
             if(!url) { alert("الرجاء لصق رابط الفيديو أولاً"); return; }
-            
             document.getElementById('loading').style.display = 'block';
             document.getElementById('result').style.display = 'none';
-            
             try {
                 const res = await fetch(`${WORKER_URL}?url=${encodeURIComponent(url)}`);
                 const responseData = await res.json();
-                
                 if(responseData.success && responseData.data.play) {
                     globalVideoUrl = responseData.data.play; 
                     document.getElementById('videoPreview').src = globalVideoUrl;
@@ -413,8 +315,6 @@
             } catch (error) { window.open(globalVideoUrl, '_blank'); }
         }
     </script>
-
     <script src="https://pl28496644.effectivegatecpm.com/34/c8/da/34c8da04dcbafe7aee4b6c266144c73e.js"></script>
-
 </body>
 </html>
