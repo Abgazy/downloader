@@ -112,27 +112,14 @@
         }
 
         .ad-container-middle {
-            width: 100%; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center;
-            min-height: 90px; 
-            margin-bottom: 20px; 
-            background: #fdfdfd;
-            border-radius: 10px; 
-            overflow: hidden;
+            width: 100%; display: flex; justify-content: center; align-items: center;
+            min-height: 90px; margin-bottom: 20px; background: #fdfdfd;
+            border-radius: 10px; overflow: hidden;
         }
         
         .input-area {
-            position: relative;
-            z-index: 50;
-            background: white;
-            isolation: isolate;
-            width: 100%;
-            overflow: hidden;
-            margin-top: 5px;
-            display: flex;
-            flex-direction: column;
+            position: relative; z-index: 50; background: white; isolation: isolate;
+            width: 100%; overflow: hidden; margin-top: 5px; display: flex; flex-direction: column;
         }
 
         .btn {
@@ -140,53 +127,18 @@
             background: linear-gradient(135deg, #fe2c55 0%, #ee1d52 100%);
             color: white; font-size: 17px; font-weight: bold; cursor: pointer;
             box-shadow: 0 4px 15px rgba(254, 44, 85, 0.3);
-            margin-bottom: 20px;
-            order: 1;
-            transition: transform 0.2s ease;
+            margin-bottom: 20px; order: 1; transition: transform 0.2s ease;
         }
-        
         .btn:hover { transform: translateY(-2px); }
-
-        .footer-links-container {
-            background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            padding: 15px; max-width: 500px; width: 100%; 
-            margin-top: 150px; /* زيادة المسافة قليلاً لمزيد من الأمان */
-            margin-bottom: 40px;
-            display: flex; flex-direction: column; align-items: center;
-            -webkit-user-select: none; user-select: none; 
-            pointer-events: none; /* السطر المعدل: يمنع تداخل اللمس والنسخ نهائياً مع النظام */
-        }
-
-        .mid-links {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 12px;
-            pointer-events: auto; /* يسمح بالضغط على الروابط فقط مع منع تداخلها مع ما حولها */
-        }
-        .mid-links a {
-            color: #999;
-            text-decoration: none;
-            font-size: 0.85em;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-        .mid-links a:hover { color: #fe2c55; }
 
         input[type="url"] {
             width: 100%; padding: 14px; border: 2px solid #fe2c55; border-radius: 10px;
             font-size: 15px; direction: ltr; text-align: left; background: #fff; outline: none;
-            transition: border-color 0.3s ease;
-            margin-bottom: 5px;
-            order: 3;
+            transition: border-color 0.3s ease; margin-bottom: 5px; order: 3;
         }
-        
         input[type="url"]:focus { border-color: #ee1d52; }
 
-        .hint-text {
-            text-align: center; margin-bottom: 10px; color: #555; font-size: 0.9em;
-            order: 2;
-        }
+        .hint-text { text-align: center; margin-bottom: 10px; color: #555; font-size: 0.9em; order: 2; }
 
         .result { margin-top: 20px; display: none; text-align: center; }
         video { width: 100%; border-radius: 12px; background: #000; }
@@ -197,15 +149,33 @@
             border-radius: 10px; font-weight: bold; font-size: 16px; cursor: pointer; border: none;
         }
         
-        .loading { 
-            display: none; text-align: center; margin: 15px 0; 
-            font-weight: bold; color: #fe2c55; font-size: 0.9em; 
-        }
+        .loading { display: none; text-align: center; margin: 15px 0; font-weight: bold; color: #fe2c55; font-size: 0.9em; }
 
-        h1, p {
-            -webkit-user-select: none;
-            user-select: none;
+        /* تعديلات الفكرة الجديدة: النافذة المنبثقة */
+        .modal-trigger {
+            margin-top: 50px; background: rgba(255,255,255,0.2); color: white;
+            padding: 10px 20px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.3);
+            cursor: pointer; font-size: 0.9em; text-decoration: none; transition: 0.3s;
         }
+        .modal-trigger:hover { background: rgba(255,255,255,0.4); }
+
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7); display: none; justify-content: center;
+            align-items: center; z-index: 1000; backdrop-filter: blur(5px);
+        }
+        .modal-content {
+            background: white; padding: 30px; border-radius: 20px; width: 90%;
+            max-width: 400px; text-align: center; position: relative;
+        }
+        .close-modal {
+            position: absolute; top: 10px; left: 15px; font-size: 24px;
+            cursor: pointer; color: #333; font-weight: bold;
+        }
+        .mid-links { display: flex; flex-direction: column; gap: 15px; margin-top: 15px; }
+        .mid-links a { color: #fe2c55; text-decoration: none; font-weight: bold; font-size: 1.1em; }
+
+        h1, p { -webkit-user-select: none; user-select: none; }
     </style>
 </head>
 <body>
@@ -239,20 +209,31 @@
         </div>
     </div> 
 
-    <div class="footer-links-container">
-        <nav class="mid-links">
-            <a href="about.html">من نحن</a>
-            <a href="privacy.html">الخصوصية</a>
-            <a href="terms.html">الشروط</a>
-            <a href="contact.html">اتصل بنا</a>
-            <a href="guide.html">دليل الاستخدام</a>
-            <a href="guide.html#faq">الأسئلة الشائعة</a>
-        </nav>
+    <button class="modal-trigger" onclick="toggleModal(true)">🔗 معلومات وسياسات الموقع</button>
+
+    <div id="infoModal" class="modal-overlay" onclick="toggleModal(false)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close-modal" onclick="toggleModal(false)">&times;</span>
+            <h3 style="margin-bottom:20px;">روابط سريعة</h3>
+            <nav class="mid-links">
+                <a href="about.html">من نحن</a>
+                <a href="privacy.html">الخصوصية</a>
+                <a href="terms.html">الشروط</a>
+                <a href="contact.html">اتصل بنا</a>
+                <a href="guide.html">دليل الاستخدام</a>
+                <a href="guide.html#faq">الأسئلة الشائعة</a>
+            </nav>
+        </div>
     </div>
 
     <script>
         const WORKER_URL = 'https://tiktok-proxy.nasralhrby370.workers.dev';
         let globalVideoUrl = "";
+
+        // وظيفة فتح وإغلاق النافذة
+        function toggleModal(show) {
+            document.getElementById('infoModal').style.display = show ? 'flex' : 'none';
+        }
 
         async function downloadVideo() {
             const input = document.getElementById('v_url_clean');
