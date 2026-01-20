@@ -147,14 +147,14 @@
         
         .btn:hover { transform: translateY(-2px); }
 
-        /* تعديل المسافات والروابط السفلية */
         .footer-links-container {
             background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             padding: 15px; max-width: 500px; width: 100%; 
-            margin-top: 100px; /* مسافة هامشية كبيرة تظهر فيها الخلفية البنفسجية */
+            margin-top: 150px; /* زيادة المسافة قليلاً لمزيد من الأمان */
             margin-bottom: 40px;
             display: flex; flex-direction: column; align-items: center;
-            -webkit-user-select: none; user-select: none; /* منع التحديد والنسخ */
+            -webkit-user-select: none; user-select: none; 
+            pointer-events: none; /* السطر المعدل: يمنع تداخل اللمس والنسخ نهائياً مع النظام */
         }
 
         .mid-links {
@@ -162,6 +162,7 @@
             justify-content: center;
             flex-wrap: wrap;
             gap: 12px;
+            pointer-events: auto; /* يسمح بالضغط على الروابط فقط مع منع تداخلها مع ما حولها */
         }
         .mid-links a {
             color: #999;
