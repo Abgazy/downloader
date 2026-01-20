@@ -199,6 +199,16 @@
         .feature-list { background: white; padding: 15px 20px; border-radius: 10px; margin: 20px 0; border-right: 4px solid #fe2c55; }
         .steps { background: white; padding: 20px; border-radius: 10px; margin: 20px 0; }
         .steps p { padding: 10px 15px; margin: 8px 0; background: #f0f0f0; border-radius: 8px; }
+
+        /* تعديل منع التحديد لضبط السحب في الآيفون */
+        .seo-content, h1, .feature-list, .steps {
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        input[type="url"], .input-area {
+            -webkit-user-select: text !important;
+            user-select: text !important;
+        }
     </style>
 </head>
 <body>
