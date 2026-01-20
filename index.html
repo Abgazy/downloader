@@ -18,78 +18,10 @@
     <meta property="og:description" content="أفضل أداة مجانية لتحميل فيديوهات تيك توك بدون علامة مائية. سريع، آمن، وبدون برامج. 200 تحميل مجاني يومياً!">
     <meta property="og:url" content="https://abgazy.github.io/downloader/">
     <meta property="og:image" content="https://abgazy.github.io/downloader/IMG_3805.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="TikTok Saver - تحميل فيديوهات تيك توك">
-    <meta property="og:locale" content="ar_SA">
-    
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="TikTok Saver | تحميل فيديوهات تيك توك بدون علامة مائية">
-    <meta name="twitter:description" content="أفضل أداة مجانية لتحميل فيديوهات تيك توك بدون علامة مائية. سريع، آمن، وبدون برامج.">
-    <meta name="twitter:image" content="https://abgazy.github.io/downloader/IMG_3805.png">
-    <meta name="twitter:image:alt" content="TikTok Saver Logo">
-    
-    <link rel="canonical" href="https://abgazy.github.io/downloader/">
     
     <link rel="icon" type="image/png" href="IMG_3805.png">
     <link rel="apple-touch-icon" href="IMG_3805.png">
-    <link rel="shortcut icon" href="IMG_3805.png">
     
-    <link rel="alternate" hreflang="ar" href="https://abgazy.github.io/downloader/">
-    <link rel="alternate" hreflang="x-default" href="https://abgazy.github.io/downloader/">
-    
-    <meta name="theme-color" content="#667eea">
-    <meta name="msapplication-TileColor" content="#667eea">
-    
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "TikTok Saver",
-      "alternateName": ["تحميل تيك توك", "TikTok Downloader"],
-      "url": "https://abgazy.github.io/downloader/",
-      "logo": "https://abgazy.github.io/downloader/IMG_3805.png",
-      "description": "أداة مجانية لتحميل فيديوهات تيك توك بدون علامة مائية بجودة عالية. سريع وآمن وبدون برامج.",
-      "applicationCategory": "MultimediaApplication",
-      "operatingSystem": "Any",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.8",
-        "ratingCount": "3547",
-        "bestRating": "5",
-        "worstRating": "1"
-      },
-      "inLanguage": "ar",
-      "browserRequirements": "Requires JavaScript. Requires HTML5.",
-      "featureList": [
-        "تحميل بدون علامة مائية",
-        "جودة عالية HD",
-        "سريع وآمن",
-        "بدون تسجيل",
-        "200 تحميل مجاني يومياً"
-      ],
-      "screenshot": "https://abgazy.github.io/downloader/IMG_3805.png",
-      "potentialAction": {
-        "@type": "UseAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": "https://abgazy.github.io/downloader/",
-          "actionPlatform": [
-            "http://schema.org/DesktopWebPlatform",
-            "http://schema.org/MobileWebPlatform",
-            "http://schema.org/IOSPlatform",
-            "http://schema.org/AndroidPlatform"
-          ]
-        }
-      }
-    }
-    </script>
-
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body {
@@ -105,75 +37,49 @@
         }
         h1 { text-align: center; color: #333; margin: 15px 0; font-size: 1.6em; }
         
-        .ad-container-top {
-            width: 100%; display: center; justify-content: center; align-items: center;
-            min-height: 50px; margin-bottom: 10px; background: #fdfdfd;
-            border-radius: 10px; overflow: hidden;
-        }
-
-        .ad-container-middle {
+        .ad-container-top, .ad-container-middle {
             width: 100%; display: flex; justify-content: center; align-items: center;
-            min-height: 90px; margin-bottom: 20px; background: #fdfdfd;
-            border-radius: 10px; overflow: hidden;
+            background: #fdfdfd; border-radius: 10px; overflow: hidden; margin-bottom: 10px;
         }
+        .ad-container-top { min-height: 50px; }
+        .ad-container-middle { min-height: 90px; margin-bottom: 20px; }
         
         .input-area {
-            position: relative; z-index: 50; background: white; isolation: isolate;
-            width: 100%; overflow: hidden; margin-top: 5px; display: flex; flex-direction: column;
+            position: relative; z-index: 50; background: white; 
+            width: 100%; display: flex; flex-direction: column;
         }
-
         .btn {
             width: 100%; padding: 16px; border: none; border-radius: 12px;
             background: linear-gradient(135deg, #fe2c55 0%, #ee1d52 100%);
             color: white; font-size: 17px; font-weight: bold; cursor: pointer;
             box-shadow: 0 4px 15px rgba(254, 44, 85, 0.3);
-            margin-bottom: 20px; order: 1; transition: transform 0.2s ease;
+            margin-bottom: 20px; order: 1;
         }
-        .btn:hover { transform: translateY(-2px); }
-
         input[type="url"] {
             width: 100%; padding: 14px; border: 2px solid #fe2c55; border-radius: 10px;
             font-size: 15px; direction: ltr; text-align: left; background: #fff; outline: none;
-            transition: border-color 0.3s ease; margin-bottom: 5px; order: 3;
+            margin-bottom: 5px; order: 3;
         }
-        input[type="url"]:focus { border-color: #ee1d52; }
-
         .hint-text { text-align: center; margin-bottom: 10px; color: #555; font-size: 0.9em; order: 2; }
-
         .result { margin-top: 20px; display: none; text-align: center; }
         video { width: 100%; border-radius: 12px; background: #000; }
-        
         .dl-link { 
             display: inline-block; width: 100%; margin-top: 15px; padding: 14px; 
-            background: #28a745; color: white; text-decoration: none; 
-            border-radius: 10px; font-weight: bold; font-size: 16px; cursor: pointer; border: none;
+            background: #28a745; color: white; border-radius: 10px; font-weight: bold; border: none;
         }
+        .loading { display: none; text-align: center; margin: 15px 0; color: #fe2c55; font-weight: bold; }
+
+        /* تنسيق قسم الدليل الجديد في الأسفل */
+        .seo-footer {
+            max-width: 600px; width: 100%; margin-top: 40px; padding: 20px;
+            background: rgba(255, 255, 255, 0.95); border-radius: 20px; color: #444;
+        }
+        .seo-footer h2 { color: #333; font-size: 1.3em; margin: 20px 0 10px; border-bottom: 2px solid #fe2c55; display: inline-block; }
+        .seo-footer p { line-height: 1.7; font-size: 0.95em; margin-bottom: 15px; }
+        .feature-box { background: #f0f2f5; padding: 15px; border-radius: 10px; margin: 15px 0; border-right: 4px solid #fe2c55; }
         
-        .loading { display: none; text-align: center; margin: 15px 0; font-weight: bold; color: #fe2c55; font-size: 0.9em; }
-
-        .modal-trigger {
-            margin-top: 50px; background: rgba(255,255,255,0.2); color: white;
-            padding: 10px 20px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.3);
-            cursor: pointer; font-size: 0.9em; text-decoration: none; transition: 0.3s;
-        }
-
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7); display: none; justify-content: center;
-            align-items: center; z-index: 1000; backdrop-filter: blur(5px);
-        }
-        .modal-content {
-            background: white; padding: 30px; border-radius: 20px; width: 90%;
-            max-width: 400px; text-align: center; position: relative;
-        }
-        .close-modal {
-            position: absolute; top: 10px; left: 15px; font-size: 24px;
-            cursor: pointer; color: #333; font-weight: bold;
-        }
-        .mid-links { display: flex; flex-direction: column; gap: 15px; margin-top: 15px; }
-        .mid-links a { color: #fe2c55; text-decoration: none; font-weight: bold; font-size: 1.1em; }
-
-        h1, p { -webkit-user-select: none; user-select: none; }
+        .footer-nav { margin-top: 30px; text-align: center; padding-bottom: 20px; }
+        .footer-nav a { color: white; text-decoration: none; margin: 0 10px; font-size: 0.85em; opacity: 0.8; }
     </style>
 </head>
 <body>
@@ -184,20 +90,17 @@
             <script type="text/javascript" src="https://www.highperformanceformat.com/395e4252f579922a8806b892c2934b47/invoke.js"></script>
         </div>
 
-        <div class="top-section">
-            <h1>🎬 TikTok Saver</h1>
-            <div class="ad-container-middle">
-                <script type="text/javascript">atOptions = {'key' : 'e2e1825e36ae3efe15e7f84282c259b9','format' : 'iframe','height' : 90,'width' : 728,'params' : {}};</script>
-                <script type="text/javascript" src="https://www.highperformanceformat.com/e2e1825e36ae3efe15e7f84282c259b9/invoke.js"></script>
-            </div>
-        </div> 
+        <h1>🎬 TikTok Saver</h1>
+        
+        <div class="ad-container-middle">
+            <script type="text/javascript">atOptions = {'key' : 'e2e1825e36ae3efe15e7f84282c259b9','format' : 'iframe','height' : 90,'width' : 728,'params' : {}};</script>
+            <script type="text/javascript" src="https://www.highperformanceformat.com/e2e1825e36ae3efe15e7f84282c259b9/invoke.js"></script>
+        </div>
 
-        <div class="bottom-part"> 
-            <div id="loading" class="loading">⏳ جاري معالجة الرابط...</div>
-            <div id="result" class="result">
-                <video id="videoPreview" controls playsinline></video>
-                <button id="realDownloadBtn" class="dl-link" onclick="forceDownload()">📥 حفظ في الاستوديو</button>
-            </div>
+        <div id="loading" class="loading">⏳ جاري معالجة الرابط...</div>
+        <div id="result" class="result">
+            <video id="videoPreview" controls playsinline></video>
+            <button id="realDownloadBtn" class="dl-link" onclick="forceDownload()">📥 حفظ في الاستوديو</button>
         </div>
 
         <div class="input-area"> 
@@ -205,58 +108,51 @@
             <p class="hint-text">الصق الرابط بالأسفل 👇</p>
             <input type="url" id="v_url_clean" placeholder="https://www.tiktok.com/..." autocomplete="off" onpaste="handlePaste(event)">
         </div>
-    </div> 
+    </div>
 
-    <button class="modal-trigger" onclick="toggleModal(true)">🔗 معلومات وسياسات الموقع</button>
-
-    <div id="infoModal" class="modal-overlay" onclick="toggleModal(false)">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <span class="close-modal" onclick="toggleModal(false)">&times;</span>
-            <h3 style="margin-bottom:20px;">روابط سريعة</h3>
-            <nav class="mid-links">
-                <a href="about.html">من نحن</a>
-                <a href="privacy.html">الخصوصية</a>
-                <a href="terms.html">الشروط</a>
-                <a href="contact.html">اتصل بنا</a>
-                <a href="guide.html">دليل الاستخدام</a>
-                <a href="guide.html#faq">الأسئلة الشائعة</a>
-            </nav>
+    <div class="seo-footer">
+        <h2>كيفية تحميل فيديوهات تيك توك بدون علامة مائية؟</h2>
+        <p>ببساطة، انسخ رابط الفيديو من تطبيق تيك توك، ثم الصقه في المربع أعلاه واضغط على زر التحميل. سيقوم <strong>TikTok Saver</strong> بمعالجة الفيديو وتوفير رابط تحميل مباشر بجودة عالية وبدون أي شعارات مزعجة.</p>
+        
+        <div class="feature-box">
+            <p>✅ 200 تحميل مجاني يومياً</p>
+            <p>✅ جودة HD عالية الوضوح</p>
+            <p>✅ سريع وآمن تماماً</p>
+            <p>✅ يعمل على الآيفون والأندرويد</p>
         </div>
+
+        <h2>الأسئلة الشائعة حول الخدمة</h2>
+        <p><strong>هل الخدمة مجانية؟</strong> نعم، نحن نقدم الخدمة مجاناً لجميع المستخدمين بحد يصل إلى 200 تحميل يومياً.</p>
+        <p><strong>أين يتم حفظ الفيديوهات؟</strong> يتم حفظها مباشرة في استوديو الصور أو مجلد التنزيلات بجهازك.</p>
+        <p><strong>هل أحتاج لتثبيت تطبيق؟</strong> لا، الموقع يعمل مباشرة من المتصفح (سفاري، كروم) دون الحاجة لأي برامج إضافية.</p>
+    </div>
+
+    <div class="footer-nav">
+        <a href="about.html">من نحن</a>
+        <a href="privacy.html">الخصوصية</a>
+        <a href="terms.html">الشروط</a>
+        <a href="contact.html">اتصل بنا</a>
     </div>
 
     <script>
         const WORKER_URL = 'https://tiktok-proxy.nasralhrby370.workers.dev';
         let globalVideoUrl = "";
 
-        // وظيفة الفلترة الذكية عند اللصق
+        // المصفاة الذكية لمنع سحب النصوص
         function handlePaste(e) {
-            // منع اللصق الافتراضي لفترة قصيرة جداً للقيام بالتنظيف
             e.preventDefault();
             let text = (e.clipboardData || window.clipboardData).getData('text');
-            
-            // تنظيف النص: إبقاء الروابط الإنجليزية فقط وحذف العربي والرموز والزوائد
-            // نبحث عن رابط يبدأ بـ http ويحتوي على tiktok
             let cleanedUrl = "";
             let match = text.match(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/);
-            
-            if (match) {
-                cleanedUrl = match[0];
-            } else {
-                // إذا لم يجد رابطاً كاملاً، يحذف على الأقل الحروف العربية والرموز
-                cleanedUrl = text.replace(/[\u0600-\u06FF]/g, '').replace(/[^\x00-\x7F]/g, "").trim();
-            }
-
+            if (match) { cleanedUrl = match[0]; } 
+            else { cleanedUrl = text.replace(/[\u0600-\u06FF]/g, '').replace(/[^\x00-\x7F]/g, "").trim(); }
             document.getElementById('v_url_clean').value = cleanedUrl;
-        }
-
-        function toggleModal(show) {
-            document.getElementById('infoModal').style.display = show ? 'flex' : 'none';
         }
 
         async function downloadVideo() {
             const input = document.getElementById('v_url_clean');
             let url = input.value.trim();
-            if(!url) { alert("الرجاء لصق رابط الفيديو أولاً"); return; }
+            if(!url) { alert("الرجاء لصق الرابط أولاً"); return; }
             document.getElementById('loading').style.display = 'block';
             document.getElementById('result').style.display = 'none';
             try {
@@ -266,8 +162,8 @@
                     globalVideoUrl = responseData.data.play; 
                     document.getElementById('videoPreview').src = globalVideoUrl;
                     document.getElementById('result').style.display = 'block';
-                } else { alert("لم نتمكن من العثور على الفيديو"); }
-            } catch(e) { alert("خطأ في الاتصال"); }
+                } else { alert("عذراً، لم يتم العثور على الفيديو"); }
+            } catch(e) { alert("خطأ في الاتصال بالسيرفر"); }
             document.getElementById('loading').style.display = 'none';
         }
 
@@ -281,14 +177,13 @@
                 const url = window.URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = `video_${Date.now()}.mp4`;
+                a.download = `tiktok_video_${Date.now()}.mp4`;
                 document.body.appendChild(a);
                 a.click();
                 btn.innerHTML = "📥 حفظ في الاستوديو";
             } catch (error) { window.open(globalVideoUrl, '_blank'); }
         }
     </script>
-    
     <script src="https://pl28496644.effectivegatecpm.com/34/c8/da/34c8da04dcbafe7aee4b6c266144c73e.js"></script>
 </body>
 </html>
