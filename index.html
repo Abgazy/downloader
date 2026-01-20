@@ -130,7 +130,9 @@
             isolation: isolate;
             width: 100%;
             overflow: hidden;
-            margin-top: 10px;
+            margin-top: 5px;
+            display: flex;
+            flex-direction: column;
         }
 
         .btn {
@@ -138,7 +140,8 @@
             background: linear-gradient(135deg, #fe2c55 0%, #ee1d52 100%);
             color: white; font-size: 17px; font-weight: bold; cursor: pointer;
             box-shadow: 0 4px 15px rgba(254, 44, 85, 0.3);
-            margin-bottom: 5px;
+            margin-bottom: 20px; /* مسافة بين الزر والمربع */
+            order: 1; /* ترتيب الزر فوق */
             transition: transform 0.2s ease;
         }
         
@@ -166,10 +169,16 @@
             width: 100%; padding: 14px; border: 2px solid #fe2c55; border-radius: 10px;
             font-size: 15px; direction: ltr; text-align: left; background: #fff; outline: none;
             transition: border-color 0.3s ease;
-            margin-bottom: 15px;
+            margin-bottom: 5px;
+            order: 3; /* ترتيب المربع في الأسفل */
         }
         
         input[type="url"]:focus { border-color: #ee1d52; }
+
+        .hint-text {
+            text-align: center; margin-bottom: 10px; color: #555; font-size: 0.9em;
+            order: 2; /* النص التوضيحي في المنتصف */
+        }
 
         .result { margin-top: 20px; display: none; text-align: center; }
         video { width: 100%; border-radius: 12px; background: #000; }
@@ -224,9 +233,9 @@
         </div>
 
         <div class="input-area"> 
-            <p style="text-align: center; margin-bottom: 10px; color: #555; font-size: 0.9em;">الصق الرابط بالأسفل 👇</p>
-            <input type="url" id="v_url_clean" placeholder="https://www.tiktok.com/..." autocomplete="off">
             <button type="button" class="btn" onclick="downloadVideo()">🚀 ابدأ التحميل الآن</button>
+            <p class="hint-text">الصق الرابط بالأسفل 👇</p>
+            <input type="url" id="v_url_clean" placeholder="https://www.tiktok.com/..." autocomplete="off">
         </div>
     </div> 
 
