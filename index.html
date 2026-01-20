@@ -123,7 +123,6 @@
             overflow: hidden;
         }
         
-        /* ✅ تطبيق الحل الذكي حقك */
         .input-area {
             position: relative;
             z-index: 50;
@@ -131,6 +130,7 @@
             isolation: isolate;
             width: 100%;
             overflow: hidden;
+            margin-top: 10px;
         }
 
         .btn {
@@ -138,19 +138,18 @@
             background: linear-gradient(135deg, #fe2c55 0%, #ee1d52 100%);
             color: white; font-size: 17px; font-weight: bold; cursor: pointer;
             box-shadow: 0 4px 15px rgba(254, 44, 85, 0.3);
-            margin-bottom: 20px;
+            margin-bottom: 5px;
             transition: transform 0.2s ease;
         }
         
-        .btn:hover {
-            transform: translateY(-2px);
-        }
+        .btn:hover { transform: translateY(-2px); }
 
         .mid-links {
             display: flex;
             justify-content: center;
+            flex-wrap: wrap;
             gap: 12px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             padding-bottom: 15px;
             border-bottom: 1px dashed #eee;
         }
@@ -170,9 +169,7 @@
             margin-bottom: 15px;
         }
         
-        input[type="url"]:focus {
-            border-color: #ee1d52;
-        }
+        input[type="url"]:focus { border-color: #ee1d52; }
 
         .result { margin-top: 20px; display: none; text-align: center; }
         video { width: 100%; border-radius: 12px; background: #000; }
@@ -181,33 +178,16 @@
             display: inline-block; width: 100%; margin-top: 15px; padding: 14px; 
             background: #28a745; color: white; text-decoration: none; 
             border-radius: 10px; font-weight: bold; font-size: 16px; cursor: pointer; border: none;
-            transition: all 0.3s ease;
         }
         
         .loading { 
             display: none; text-align: center; margin: 15px 0; 
             font-weight: bold; color: #fe2c55; font-size: 0.9em; 
         }
-        
-        .seo-content {
-            margin-top: 10px; padding: 25px; background: #f9f9f9;
-            border-radius: 15px; color: #555; font-size: 0.9em;
-            line-height: 1.8; max-width: 500px;
-        }
-        
-        .seo-content h2 { color: #333; font-size: 1.3em; margin-bottom: 15px; margin-top: 25px; }
-        .feature-list { background: white; padding: 15px 20px; border-radius: 10px; margin: 20px 0; border-right: 4px solid #fe2c55; }
-        .steps { background: white; padding: 20px; border-radius: 10px; margin: 20px 0; }
-        .steps p { padding: 10px 15px; margin: 8px 0; background: #f0f0f0; border-radius: 8px; }
 
-        /* تعديل منع التحديد لضبط السحب في الآيفون */
-        .seo-content, h1, .feature-list, .steps {
+        h1, p, .mid-links {
             -webkit-user-select: none;
             user-select: none;
-        }
-        input[type="url"], .input-area {
-            -webkit-user-select: text !important;
-            user-select: text !important;
         }
     </style>
 </head>
@@ -227,17 +207,14 @@
             </div>
         </div> 
 
-        <div class="input-area"> <p style="text-align: center; margin-bottom: 10px; color: #555; font-size: 0.9em;">الصق الرابط بالأسفل 👇</p>
-            <input type="url" id="v_url_clean" placeholder="https://www.tiktok.com/..." autocomplete="off">
-            <button type="button" class="btn" onclick="downloadVideo()">🚀 ابدأ التحميل الآن</button>
-        </div>
-
         <div class="bottom-part"> 
             <nav class="mid-links">
                 <a href="about.html">من نحن</a>
                 <a href="privacy.html">الخصوصية</a>
                 <a href="terms.html">الشروط</a>
                 <a href="contact.html">اتصل بنا</a>
+                <a href="guide.html">دليل الاستخدام</a>
+                <a href="guide.html#faq">الأسئلة الشائعة</a>
             </nav>
             <div id="loading" class="loading">⏳ جاري معالجة الرابط...</div>
             <div id="result" class="result">
@@ -245,46 +222,13 @@
                 <button id="realDownloadBtn" class="dl-link" onclick="forceDownload()">📥 حفظ في الاستوديو</button>
             </div>
         </div>
+
+        <div class="input-area"> 
+            <p style="text-align: center; margin-bottom: 10px; color: #555; font-size: 0.9em;">الصق الرابط بالأسفل 👇</p>
+            <input type="url" id="v_url_clean" placeholder="https://www.tiktok.com/..." autocomplete="off">
+            <button type="button" class="btn" onclick="downloadVideo()">🚀 ابدأ التحميل الآن</button>
+        </div>
     </div> 
-
-    <br><br><br>
-    
-    <section class="seo-content">
-        <h2>ما هو TikTok Saver - أفضل أداة لتحميل فيديوهات تيك توك؟</h2>
-        <p><strong>TikTok Saver</strong> هي أداة مجانية 100% تتيح لك تحميل وحفظ فيديوهات تيك توك بدون علامة مائية بجودة عالية HD. لا تحتاج لتثبيت أي برامج أو تطبيقات على جهازك - فقط الصق رابط الفيديو من TikTok وحمّله مباشرة بنقرة واحدة. نوفر لك 200 تحميل مجاني يومياً بسرعة فائقة وأمان كامل.</p>
-
-        <h2>لماذا تختار TikTok Saver لتحميل فيديوهات تيك توك؟</h2>
-        <div class="feature-list">
-            <p><strong>مجاني 100%</strong> - لا رسوم خفية ولا اشتراكات، احصل على 200 تحميل مجاني كل يوم</p>
-            <p><strong>بدون علامة مائية</strong> - فيديوهات نظيفة تماماً بدون أي لوجو أو علامات</p>
-            <p><strong>جودة عالية HD</strong> - حمّل الفيديوهات بأفضل جودة متاحة حتى 1080p</p>
-            <p><strong>سريع وآمن</strong> - معالجة فورية مع حماية كاملة لخصوصيتك وبياناتك</p>
-            <p><strong>بدون تسجيل</strong> - لا حاجة لإنشاء حساب أو تقديم بريد إلكتروني</p>
-            <p><strong>متوافق مع الجميع</strong> - يعمل على الموبايل والكمبيوتر والتابلت</p>
-            <p><strong>يدعم جميع الفيديوهات</strong> - حمّل أي فيديو من TikTok بكل سهولة</p>
-        </div>
-
-        <h2>كيفية تحميل فيديو من تيك توك بدون علامة مائية - 5 خطوات سهلة</h2>
-        <div class="steps">
-            <p><strong>1️⃣</strong> افتح تطبيق TikTok على جهازك واختر الفيديو الذي تريد تحميله</p>
-            <p><strong>2️⃣</strong> اضغط على زر "مشاركة" (السهم) الموجود على يمين الفيديو</p>
-            <p><strong>3️⃣</strong> اختر "نسخ الرابط" أو "Copy Link" من قائمة المشاركة</p>
-            <p><strong>4️⃣</strong> الصق الرابط في الخانة أعلاه واضغط "ابدأ التحميل الآن"</p>
-            <p><strong>5️⃣</strong> انتظر ثوانٍ معدودة ثم اضغط "حفظ في الاستوديو" - تم! 🎉</p>
-        </div>
-
-        <h2>هل تحميل فيديوهات تيك توك قانوني وآمن؟</h2>
-        <p>نعم، استخدام TikTok Saver آمن تماماً وقانوني للاستخدام الشخصي. نحن نوفر فقط الأداة التقنية لتحميل الفيديوهات المتاحة للجمهور. ننصحك دائماً باحترام حقوق الملكية الفكرية وعدم إعادة نشر المحتوى المحمل دون إذن من صاحبه.</p>
-
-        <h2>أسئلة شائعة حول تحميل فيديوهات تيك توك</h2>
-        <p><strong>س: هل أحتاج لتسجيل دخول في TikTok؟</strong><br>ج: لا، لا تحتاج لتسجيل دخول أو إنشاء حساب. فقط انسخ رابط أي فيديو عام وحمّله.</p>
-        <p><strong>س: ما هي جودة الفيديوهات المحملة؟</strong><br>ج: نوفر أفضل جودة متاحة للفيديو، قد تصل إلى Full HD 1080p حسب الفيديو الأصلي.</p>
-        <p><strong>س: كم عدد الفيديوهات التي يمكنني تحميلها؟</strong><br>ج: يمكنك تحميل حتى 200 فيديو مجاناً كل يوم بدون أي قيود إضافية.</p>
-        <p><strong>س: هل يعمل الموقع على الجوال؟</strong><br>ج: نعم! TikTok Saver متوافق بالكامل مع جميع الأجهزة - آيفون، أندرويد، كمبيوتر، وتابلت.</p>
-
-        <h2>TikTok Saver - خدمة تحميل تيك توك الموثوقة في 2026</h2>
-        <p>منذ إطلاقنا، ساعدنا آلاف المستخدمين في حفظ فيديوهاتهم المفضلة من تيك توك. نحن نفخر بتقديم خدمة سريعة وموثوقة وآمنة بدون أي تكاليف خفية. جرّب TikTok Saver الآن واستمتع بتحميل فيديوهات TikTok بكل سهولة!</p>
-    </section>
 
     <script>
         const WORKER_URL = 'https://tiktok-proxy.nasralhrby370.workers.dev';
@@ -325,6 +269,7 @@
             } catch (error) { window.open(globalVideoUrl, '_blank'); }
         }
     </script>
+    
     <script src="https://pl28496644.effectivegatecpm.com/34/c8/da/34c8da04dcbafe7aee4b6c266144c73e.js"></script>
 </body>
 </html>
