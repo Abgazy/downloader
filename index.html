@@ -140,26 +140,33 @@
             background: linear-gradient(135deg, #fe2c55 0%, #ee1d52 100%);
             color: white; font-size: 17px; font-weight: bold; cursor: pointer;
             box-shadow: 0 4px 15px rgba(254, 44, 85, 0.3);
-            margin-bottom: 20px; /* مسافة بين الزر والمربع */
-            order: 1; /* ترتيب الزر فوق */
+            margin-bottom: 20px;
+            order: 1;
             transition: transform 0.2s ease;
         }
         
         .btn:hover { transform: translateY(-2px); }
+
+        /* تعديل المسافات والروابط السفلية */
+        .footer-links-container {
+            background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            padding: 15px; max-width: 500px; width: 100%; 
+            margin-top: 100px; /* مسافة هامشية كبيرة تظهر فيها الخلفية البنفسجية */
+            margin-bottom: 40px;
+            display: flex; flex-direction: column; align-items: center;
+            -webkit-user-select: none; user-select: none; /* منع التحديد والنسخ */
+        }
 
         .mid-links {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
             gap: 12px;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 1px dashed #eee;
         }
         .mid-links a {
             color: #999;
             text-decoration: none;
-            font-size: 0.8em;
+            font-size: 0.85em;
             font-weight: 500;
             transition: color 0.3s ease;
         }
@@ -170,14 +177,14 @@
             font-size: 15px; direction: ltr; text-align: left; background: #fff; outline: none;
             transition: border-color 0.3s ease;
             margin-bottom: 5px;
-            order: 3; /* ترتيب المربع في الأسفل */
+            order: 3;
         }
         
         input[type="url"]:focus { border-color: #ee1d52; }
 
         .hint-text {
             text-align: center; margin-bottom: 10px; color: #555; font-size: 0.9em;
-            order: 2; /* النص التوضيحي في المنتصف */
+            order: 2;
         }
 
         .result { margin-top: 20px; display: none; text-align: center; }
@@ -194,7 +201,7 @@
             font-weight: bold; color: #fe2c55; font-size: 0.9em; 
         }
 
-        h1, p, .mid-links {
+        h1, p {
             -webkit-user-select: none;
             user-select: none;
         }
@@ -217,14 +224,6 @@
         </div> 
 
         <div class="bottom-part"> 
-            <nav class="mid-links">
-                <a href="about.html">من نحن</a>
-                <a href="privacy.html">الخصوصية</a>
-                <a href="terms.html">الشروط</a>
-                <a href="contact.html">اتصل بنا</a>
-                <a href="guide.html">دليل الاستخدام</a>
-                <a href="guide.html#faq">الأسئلة الشائعة</a>
-            </nav>
             <div id="loading" class="loading">⏳ جاري معالجة الرابط...</div>
             <div id="result" class="result">
                 <video id="videoPreview" controls playsinline></video>
@@ -238,6 +237,17 @@
             <input type="url" id="v_url_clean" placeholder="https://www.tiktok.com/..." autocomplete="off">
         </div>
     </div> 
+
+    <div class="footer-links-container">
+        <nav class="mid-links">
+            <a href="about.html">من نحن</a>
+            <a href="privacy.html">الخصوصية</a>
+            <a href="terms.html">الشروط</a>
+            <a href="contact.html">اتصل بنا</a>
+            <a href="guide.html">دليل الاستخدام</a>
+            <a href="guide.html#faq">الأسئلة الشائعة</a>
+        </nav>
+    </div>
 
     <script>
         const WORKER_URL = 'https://tiktok-proxy.nasralhrby370.workers.dev';
