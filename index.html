@@ -118,9 +118,11 @@
             <button id="hdBtn" class="dl-link btn-hd" onclick="handleHdDownload()">📥 تحميل جودة عالية HD</button>
             <button id="sdBtn" class="dl-link btn-sd" onclick="forceDownload('SD')">📥 تحميل جودة عادية SD</button>
             <button id="mp3Btn" class="dl-link btn-mp3" onclick="forceDownloadMusic()">🎵 تحميل موسيقى MP3</button>
+            
+            <button class="dl-link" style="background:#666; margin-top: 20px;" onclick="window.location.reload()">🔄 تحميل فيديو آخر</button>
         </div>
 
-        <div class="input-area"> 
+        <div id="inputArea" class="input-area"> 
             <button type="button" class="btn" onclick="downloadVideo()">🚀 ابدأ التحميل الآن</button>
             <p class="hint-text">الصق الرابط بالأسفل 👇</p>
             <input type="url" id="v_url_clean" placeholder="https://www.tiktok.com/..." autocomplete="off" onpaste="handlePaste(event)">
@@ -150,7 +152,6 @@
         const WORKER_URL = 'https://tiktok-proxy.nasralhrby370.workers.dev';
         let globalVideoUrl = "";
         let globalMusicUrl = "";
-        let currentQuality = "";
 
         function handlePaste(e) {
             e.preventDefault();
@@ -176,34 +177,25 @@
                 if(responseData.success && responseData.data.play) {
                     globalVideoUrl = responseData.data.play;
                     globalMusicUrl = responseData.data.music;
-                    currentQuality = responseData.data.quality; 
                     
                     document.getElementById('videoPreview').src = globalVideoUrl;
                     
-                    if(currentQuality === "HD") {
-                        document.getElementById('hdBtn').style.display = 'inline-block';
-                        document.getElementById('sdBtn').style.display = 'none';
-                    } else {
-                        document.getElementById('hdBtn').style.display = 'none';
-                        document.getElementById('sdBtn').style.display = 'inline-block';
-                    }
-                    
-                    document.getElementById('mp3Btn').style.display = globalMusicUrl ? 'inline-block' : 'none';
+                    // إظهار النتائج وإخفاء أدوات الإدخال والبحث
                     document.getElementById('result').style.display = 'block';
+                    document.getElementById('inputArea').style.display = 'none';
+                    document.querySelector('h1').style.display = 'none'; // اختيارياً إخفاء العنوان لتوفير مساحة
+                    
                 } else { alert("عذراً، لم يتم العثور على الفيديو"); }
             } catch(e) { alert("خطأ في الاتصال بالسيرفر"); }
             document.getElementById('loading').style.display = 'none';
         }
 
-        // الوظيفة الخاصة لزر HD: فتح إعلان Adsterra ثم التحميل
+        // الوظيفة الخاصة لزر HD: فتح إعلان Adsterra Smartlink ثم التحميل
         function handleHdDownload() {
-            // رابط Smartlink الخاص بك الذي أرسلته
             const AD_LINK = "https://www.effectivegatecpm.com/eavg1nbmd?key=d76843009fee74c4bce796c23e690b4d"; 
             
-            // فتح الإعلان في نافذة جديدة
             window.open(AD_LINK, '_blank');
             
-            // بدء التحميل التلقائي بعد ثانية واحدة
             setTimeout(() => {
                 forceDownload('HD');
             }, 1000);
