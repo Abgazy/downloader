@@ -31,10 +31,9 @@
             display: flex; flex-direction: column; align-items: center; padding: 20px;
         }
         
-        /* المستطيل الأول: تم تمديده من الأسفل بزيادة الـ padding-bottom */
         .container {
             background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            padding: 25px 25px 80px 25px; /* تم زيادة الرقم الأخير لتمديد الطول من الأسفل */
+            padding: 25px 25px 80px 25px;
             max-width: 500px; width: 100%; 
             margin-top: 40px; 
             display: flex; flex-direction: column; position: relative;
@@ -68,13 +67,19 @@
         .hint-text { text-align: center; margin-bottom: 10px; color: #555; font-size: 0.9em; order: 2; }
         .result { margin-top: 20px; display: none; text-align: center; }
         video { width: 100%; border-radius: 12px; background: #000; }
+        
         .dl-link { 
-            display: inline-block; width: 100%; margin-top: 15px; padding: 14px; 
-            background: #28a745; color: white; border-radius: 10px; font-weight: bold; border: none;
+            display: inline-block; width: 100%; margin-top: 10px; padding: 14px; 
+            color: white; border-radius: 10px; font-weight: bold; border: none;
+            cursor: pointer; text-decoration: none; font-size: 15px;
         }
+        
+        .btn-hd { background: #28a745; }
+        .btn-sd { background: #007bff; }
+        .btn-mp3 { background: #ffc107; color: #000; }
+
         .loading { display: none; text-align: center; margin: 15px 0; color: #fe2c55; font-weight: bold; }
 
-        /* المستطيل الثاني: يبقى بنفس مكانه السابق من الشاشة */
         .seo-footer {
             max-width: 600px; width: 100%; 
             margin-top: 100px; 
@@ -106,9 +111,13 @@
         </div>
 
         <div id="loading" class="loading">⏳ جاري معالجة الرابط...</div>
+        
         <div id="result" class="result">
             <video id="videoPreview" controls playsinline></video>
-            <button id="realDownloadBtn" class="dl-link" onclick="forceDownload()">📥 حفظ في الاستوديو</button>
+            
+            <button id="hdBtn" class="dl-link btn-hd" onclick="handleHdDownload()">📥 تحميل جودة عالية HD</button>
+            <button id="sdBtn" class="dl-link btn-sd" onclick="forceDownload('SD')">📥 تحميل جودة عادية SD</button>
+            <button id="mp3Btn" class="dl-link btn-mp3" onclick="forceDownloadMusic()">🎵 تحميل موسيقى MP3</button>
         </div>
 
         <div class="input-area"> 
@@ -119,20 +128,15 @@
     </div>
 
     <div class="seo-footer">
-        <h2>كيفية تحميل فيديوهات تيك توك بدون علامة مائية؟</h2>
-        <p>ببساطة، انسخ رابط الفيديو من تطبيق تيك توك، ثم الصقه في المربع أعلاه واضغط على زر التحميل. سيقوم <strong>TikTok Saver</strong> بمعالجة الفيديو وتوفير رابط تحميل مباشر بجودة عالية وبدون أي شعارات مزعجة.</p>
+        <h2>تحميل تيك توك بجودات متعددة و MP3</h2>
+        <p>موقع <strong>TikTok Saver</strong> يمنحك السيطرة الكاملة. يمكنك الآن اختيار تحميل الفيديو بجودة <strong>HD</strong> فائقة الوضوح، أو الجودة العادية <strong>SD</strong> لتوفير البيانات، أو حتى استخراج الموسيقى فقط بصيغة <strong>MP3</strong>.</p>
         
         <div class="feature-box">
-            <p>✅ 200 تحميل مجاني يومياً</p>
-            <p>✅ جودة HD عالية الوضوح</p>
-            <p>✅ سريع وآمن تماماً</p>
-            <p>✅ يعمل على الآيفون والأندرويد</p>
+            <p>✅ زر مخصص لتحميل جودة HD</p>
+            <p>✅ زر مخصص لتحميل جودة SD</p>
+            <p>✅ زر مخصص لتحميل MP3</p>
+            <p>✅ بدون علامة مائية نهائياً</p>
         </div>
-
-        <h2>الأسئلة الشائعة حول الخدمة</h2>
-        <p><strong>هل الخدمة مجانية؟</strong> نعم، نحن نقدم الخدمة مجاناً لجميع المستخدمين بحد يصل إلى 200 تحميل يومياً.</p>
-        <p><strong>أين يتم حفظ الفيديوهات؟</strong> يتم حفظها مباشرة في استوديو الصور أو مجلد التنزيلات بجهازك.</p>
-        <p><strong>هل أحتاج لتثبيت تطبيق؟</strong> لا، الموقع يعمل مباشرة من المتصفح (سفاري، كروم) دون الحاجة لأي برامج إضافية.</p>
     </div>
 
     <div class="footer-nav">
@@ -145,6 +149,8 @@
     <script>
         const WORKER_URL = 'https://tiktok-proxy.nasralhrby370.workers.dev';
         let globalVideoUrl = "";
+        let globalMusicUrl = "";
+        let currentQuality = "";
 
         function handlePaste(e) {
             e.preventDefault();
@@ -162,33 +168,82 @@
             if(!url) { alert("الرجاء لصق الرابط أولاً"); return; }
             document.getElementById('loading').style.display = 'block';
             document.getElementById('result').style.display = 'none';
+            
             try {
                 const res = await fetch(`${WORKER_URL}?url=${encodeURIComponent(url)}`);
                 const responseData = await res.json();
+                
                 if(responseData.success && responseData.data.play) {
-                    globalVideoUrl = responseData.data.play; 
+                    globalVideoUrl = responseData.data.play;
+                    globalMusicUrl = responseData.data.music;
+                    currentQuality = responseData.data.quality; 
+                    
                     document.getElementById('videoPreview').src = globalVideoUrl;
+                    
+                    if(currentQuality === "HD") {
+                        document.getElementById('hdBtn').style.display = 'inline-block';
+                        document.getElementById('sdBtn').style.display = 'none';
+                    } else {
+                        document.getElementById('hdBtn').style.display = 'none';
+                        document.getElementById('sdBtn').style.display = 'inline-block';
+                    }
+                    
+                    document.getElementById('mp3Btn').style.display = globalMusicUrl ? 'inline-block' : 'none';
                     document.getElementById('result').style.display = 'block';
                 } else { alert("عذراً، لم يتم العثور على الفيديو"); }
             } catch(e) { alert("خطأ في الاتصال بالسيرفر"); }
             document.getElementById('loading').style.display = 'none';
         }
 
-        async function forceDownload() {
+        // الوظيفة الخاصة لزر HD: فتح إعلان Adsterra ثم التحميل
+        function handleHdDownload() {
+            // رابط Smartlink الخاص بك الذي أرسلته
+            const AD_LINK = "https://www.effectivegatecpm.com/eavg1nbmd?key=d76843009fee74c4bce796c23e690b4d"; 
+            
+            // فتح الإعلان في نافذة جديدة
+            window.open(AD_LINK, '_blank');
+            
+            // بدء التحميل التلقائي بعد ثانية واحدة
+            setTimeout(() => {
+                forceDownload('HD');
+            }, 1000);
+        }
+
+        async function forceDownload(type) {
             if(!globalVideoUrl) return;
-            const btn = document.getElementById('realDownloadBtn');
-            btn.innerHTML = "⏳ جاري الحفظ...";
+            const btnId = type === 'HD' ? 'hdBtn' : 'sdBtn';
+            const btn = document.getElementById(btnId);
+            const originalText = btn.innerHTML;
+            btn.innerHTML = "⏳ جاري التحميل...";
             try {
                 const response = await fetch(globalVideoUrl);
                 const blob = await response.blob();
                 const url = window.URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = `tiktok_video_${Date.now()}.mp4`;
+                a.download = `tiktok_${type}_${Date.now()}.mp4`;
                 document.body.appendChild(a);
                 a.click();
-                btn.innerHTML = "📥 حفظ في الاستوديو";
-            } catch (error) { window.open(globalVideoUrl, '_blank'); }
+                btn.innerHTML = originalText;
+            } catch (error) { window.open(globalVideoUrl, '_blank'); btn.innerHTML = originalText; }
+        }
+
+        async function forceDownloadMusic() {
+            if(!globalMusicUrl) return;
+            const btn = document.getElementById('mp3Btn');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = "⏳ جاري تحميل MP3...";
+            try {
+                const response = await fetch(globalMusicUrl);
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `tiktok_audio_${Date.now()}.mp3`;
+                document.body.appendChild(a);
+                a.click();
+                btn.innerHTML = originalText;
+            } catch (error) { window.open(globalMusicUrl, '_blank'); btn.innerHTML = originalText; }
         }
     </script>
     <script src="https://pl28496644.effectivegatecpm.com/34/c8/da/34c8da04dcbafe7aee4b6c266144c73e.js"></script>
