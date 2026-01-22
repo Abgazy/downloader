@@ -271,16 +271,17 @@
             const originalText = btn.innerText;
             btn.innerText = "⏳ جاري التحميل...";
             try {
-                const response = await fetch(globalVideoUrl);
+                const response = await fetch(globalVideoUrl, { referrerPolicy: 'no-referrer' });
                 const blob = await response.blob();
                 const url = window.URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
+                a.rel = "noreferrer";
                 a.download = `TikTok_${type}_${Date.now()}.mp4`;
                 document.body.appendChild(a);
                 a.click();
                 a.remove();
-            } catch (e) { window.open(globalVideoUrl, '_blank'); }
+            } catch (e) { window.open(globalVideoUrl, '_blank', 'noreferrer'); }
             btn.innerText = originalText;
         }
 
@@ -288,16 +289,17 @@
             const btn = document.getElementById('mp3Btn');
             btn.innerText = "⏳ جاري التحميل...";
             try {
-                const response = await fetch(globalMusicUrl);
+                const response = await fetch(globalMusicUrl, { referrerPolicy: 'no-referrer' });
                 const blob = await response.blob();
                 const url = window.URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
+                a.rel = "noreferrer";
                 a.download = `TikTok_Audio_${Date.now()}.mp3`;
                 document.body.appendChild(a);
                 a.click();
                 a.remove();
-            } catch (e) { window.open(globalMusicUrl, '_blank'); }
+            } catch (e) { window.open(globalMusicUrl, '_blank', 'noreferrer'); }
             btn.innerText = "🎵 تحميل موسيقى MP3";
         }
     </script>
