@@ -17,6 +17,11 @@
     <meta property="og:title" content="TikTok Saver | تحميل فيديوهات تيك توك بدون علامة مائية">
     <meta property="og:url" content="https://abgazy.github.io/downloader/">
     <meta property="og:image" content="https://abgazy.github.io/downloader/IMG_3805.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="TikTok Saver | تحميل تيك توك">
+    <meta name="twitter:description" content="أفضل أداة مجانية لتحميل فيديوهات تيك توك بدون علامة مائية">
+    <meta name="twitter:image" content="https://abgazy.github.io/downloader/IMG_3805.png">
     
     <link rel="icon" type="image/png" href="IMG_3805.png">
     <link rel="apple-touch-icon" href="IMG_3805.png">
@@ -99,20 +104,18 @@
         .btn-sd { background: var(--info-color); }
         .btn-mp3 { background: var(--warning-color); color: #000; }
 
-        /* Notification System */
         .notification { position: fixed; top: 20px; right: 20px; padding: 15px; border-radius: 10px; color: white; z-index: 10000; box-shadow: 0 4px 12px rgba(0,0,0,0.2); animation: slideIn 0.3s ease; }
         .error { background: var(--primary-dark); }
         .success { background: var(--success-color); }
+        .warning { background: var(--warning-color); color: #000; }
         @keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
 
-        /* SEO Footer & Dark Mode Fix */
         .seo-footer { max-width: 600px; width: 100%; margin-top: 60px; padding: 25px; background: var(--footer-bg); border-radius: 20px; color: var(--footer-text); transition: 0.3s; }
         .seo-footer h2 { color: var(--text-dark); font-size: 1.3em; margin: 15px 0; border-bottom: 2px solid var(--primary-color); display: inline-block; }
         .feature-box { background: rgba(0,0,0,0.05); padding: 15px; border-radius: 10px; margin: 15px 0; border-right: 4px solid var(--primary-color); }
         .footer-nav { margin: 30px 0; text-align: center; }
         .footer-nav a { color: white; text-decoration: none; margin: 0 10px; font-size: 0.9em; opacity: 0.8; }
 
-        /* Dark Mode Support */
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-white: #1a1a2e;
@@ -130,30 +133,30 @@
 <body>
 
     <div class="container">
-        <div class="ad-container">
+        <div class="ad-container" aria-label="إعلان">
             <script type="text/javascript">atOptions = {'key' : '395e4252f579922a8806b892c2934b47','format' : 'iframe','height' : 50,'width' : 320,'params' : {}};</script>
             <script type="text/javascript" src="https://www.highperformanceformat.com/395e4252f579922a8806b892c2934b47/invoke.js"></script>
         </div>
 
         <h1 id="mainTitle">🎬 TikTok Saver</h1>
 
-        <div id="loading" class="loading">
+        <div id="loading" class="loading" role="status">
             <div class="spinner"></div>
             <p style="color: var(--primary-color); font-weight: bold;">⏳ جاري معالجة الرابط...</p>
         </div>
 
         <div id="result" class="result">
-            <video id="videoPreview" controls playsinline></video>
-            <button id="hdBtn" class="dl-link btn-hd" onclick="handleHdDownload()">📥 تحميل جودة عالية HD</button>
-            <button id="sdBtn" class="dl-link btn-sd" onclick="forceDownload('SD')">📥 تحميل جودة عادية SD</button>
-            <button id="mp3Btn" class="dl-link btn-mp3" onclick="forceDownloadMusic()">🎵 تحميل موسيقى MP3</button>
+            <video id="videoPreview" controls playsinline aria-label="معاينة الفيديو"></video>
+            <button id="hdBtn" class="dl-link btn-hd" onclick="handleHdDownload()" aria-label="تحميل جودة HD">📥 تحميل جودة عالية HD</button>
+            <button id="sdBtn" class="dl-link btn-sd" onclick="forceDownload('SD')" aria-label="تحميل جودة SD">📥 تحميل جودة عادية SD</button>
+            <button id="mp3Btn" class="dl-link btn-mp3" onclick="forceDownloadMusic()" aria-label="تحميل MP3">🎵 تحميل موسيقى MP3</button>
             <button class="dl-link" style="background:#666; margin-top: 15px;" onclick="window.location.reload()">🔄 فيديو آخر</button>
         </div>
 
         <div id="inputArea" class="input-area">
-            <button type="button" class="btn" onclick="downloadVideo()">🚀 ابدأ التحميل الآن</button>
+            <button type="button" class="btn" onclick="downloadVideo()" aria-label="بدء التحميل">🚀 ابدأ التحميل الآن</button>
             <p class="hint-text">الصق رابط فيديو تيك توك 👇</p>
-            <input type="url" id="v_url_clean" placeholder="https://www.tiktok.com/..." onpaste="handlePaste(event)">
+            <input type="url" id="v_url_clean" placeholder="https://www.tiktok.com/..." onpaste="handlePaste(event)" aria-label="رابط الفيديو">
         </div>
     </div>
 
@@ -161,14 +164,17 @@
         <h2>تحميل تيك توك بدون علامة مائية</h2>
         <p>استخدم <strong>TikTok Saver</strong> للحصول على فيديوهاتك المفضلة بجودة <strong>HD</strong>. أداة مجانية، سريعة، وآمنة تماماً.</p>
         <div class="feature-box">
-            <p>✅ تحميل مباشر بدون إعلانات منبثقة مزعجة</p>
+            <p>✅ تحميل مباشر بدون إعلامات منبثقة مزعجة</p>
             <p>✅ دعم صيغ MP4 و MP3</p>
             <p>✅ متوافق مع كافة الأجهزة (أيفون، أندرويد، كمبيوتر)</p>
         </div>
     </div>
 
     <div class="footer-nav">
-        <a href="about.html">من نحن</a> | <a href="privacy.html">الخصوصية</a> | <a href="contact.html">اتصل بنا</a>
+        <a href="about.html">من نحن</a> | 
+        <a href="terms.html">الشروط والأحكام</a> | 
+        <a href="privacy.html">الخصوصية</a> | 
+        <a href="contact.html">اتصل بنا</a>
     </div>
 
     <script>
@@ -177,6 +183,13 @@
         
         let globalVideoUrl = "";
         let globalMusicUrl = "";
+        
+        // نظام الحماية (Rate Limiting) - نقطة مضافة
+        const RATE_LIMIT = {
+            requests: [],
+            max: 5,
+            window: 60000
+        };
 
         function showNotification(msg, type='error') {
             const div = document.createElement('div');
@@ -193,10 +206,25 @@
             document.getElementById('v_url_clean').value = match ? match[0] : "";
         }
 
+        // التحقق من الرابط (Validation) - نقطة مضافة
+        function isValidUrl(url) {
+            return /tiktok\.com/.test(url);
+        }
+
         async function downloadVideo() {
             const url = document.getElementById('v_url_clean').value.trim();
             if(!url) { showNotification("الرجاء لصق الرابط أولاً"); return; }
+            if(!isValidUrl(url)) { showNotification("الرجاء إدخال رابط تيك توك صحيح"); return; }
             
+            // تطبيق نظام الحماية
+            const now = Date.now();
+            RATE_LIMIT.requests = RATE_LIMIT.requests.filter(t => now - t < RATE_LIMIT.window);
+            if(RATE_LIMIT.requests.length >= RATE_LIMIT.max) {
+                showNotification("أبطئ قليلاً! انتظر دقيقة قبل المحاولة مرة أخرى", "warning");
+                return;
+            }
+            RATE_LIMIT.requests.push(now);
+
             document.getElementById('loading').style.display = 'block';
             document.getElementById('inputArea').style.display = 'none';
             document.getElementById('mainTitle').style.display = 'none';
@@ -211,10 +239,10 @@
                     document.getElementById('videoPreview').src = globalVideoUrl;
                     document.getElementById('result').style.display = 'block';
                 } else {
-                    throw new Error("فشل في استخراج البيانات");
+                    throw new Error();
                 }
             } catch(e) {
-                showNotification("عذراً، الرابط غير مدعوم حالياً");
+                showNotification("عذراً، فشل استخراج الفيديو");
                 document.getElementById('inputArea').style.display = 'flex';
                 document.getElementById('mainTitle').style.display = 'block';
             }
@@ -229,7 +257,7 @@
         async function forceDownload(type) {
             const btn = type === 'HD' ? document.getElementById('hdBtn') : document.getElementById('sdBtn');
             const originalText = btn.innerText;
-            btn.innerText = "⏳ جاري المعالجة...";
+            btn.innerText = "⏳ جاري التحميل...";
             
             try {
                 const response = await fetch(globalVideoUrl);
@@ -259,6 +287,7 @@
                 a.download = `TikTok_Audio_${Date.now()}.mp3`;
                 document.body.appendChild(a);
                 a.click();
+                a.remove();
             } catch (e) {
                 window.open(globalMusicUrl, '_blank');
             }
