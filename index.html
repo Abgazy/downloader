@@ -71,6 +71,7 @@
         h1 { text-align: center; color: var(--text-dark); margin: 15px 0; font-size: 1.6em; }
         
         .ad-container { width: 100%; display: flex; justify-content: center; margin-bottom: 15px; border-radius: 10px; overflow: hidden; background: #f9f9f9; }
+        .ad-middle { min-height: 90px; margin: 10px 0; } /* لضمان ثبات المساحة */
 
         .input-area { display: flex; flex-direction: column; }
         
@@ -133,12 +134,25 @@
 <body>
 
     <div class="container">
-        <div class="ad-container" aria-label="إعلان">
+        <div class="ad-container" aria-label="إعلان علوي">
             <script type="text/javascript">atOptions = {'key' : '395e4252f579922a8806b892c2934b47','format' : 'iframe','height' : 50,'width' : 320,'params' : {}};</script>
             <script type="text/javascript" src="https://www.highperformanceformat.com/395e4252f579922a8806b892c2934b47/invoke.js"></script>
         </div>
 
         <h1 id="mainTitle">🎬 TikTok Saver</h1>
+
+        <div class="ad-container ad-middle" aria-label="إعلان وسط">
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : 'e2e1825e36ae3efe15e7f84282c259b9',
+                    'format' : 'iframe',
+                    'height' : 90,
+                    'width' : 728,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="https://www.highperformanceformat.com/e2e1825e36ae3efe15e7f84282c259b9/invoke.js"></script>
+        </div>
 
         <div id="loading" class="loading" role="status">
             <div class="spinner"></div>
@@ -164,7 +178,7 @@
         <h2>تحميل تيك توك بدون علامة مائية</h2>
         <p>استخدم <strong>TikTok Saver</strong> للحصول على فيديوهاتك المفضلة بجودة <strong>HD</strong>. أداة مجانية، سريعة، وآمنة تماماً.</p>
         <div class="feature-box">
-            <p>✅ تحميل مباشر بدون إعلامات منبثقة مزعجة</p>
+            <p>✅ تحميل مباشر بدون علامة مائية</p>
             <p>✅ دعم صيغ MP4 و MP3</p>
             <p>✅ متوافق مع كافة الأجهزة (أيفون، أندرويد، كمبيوتر)</p>
         </div>
@@ -184,12 +198,7 @@
         let globalVideoUrl = "";
         let globalMusicUrl = "";
         
-        // نظام الحماية (Rate Limiting) - نقطة مضافة
-        const RATE_LIMIT = {
-            requests: [],
-            max: 5,
-            window: 60000
-        };
+        const RATE_LIMIT = { requests: [], max: 5, window: 60000 };
 
         function showNotification(msg, type='error') {
             const div = document.createElement('div');
@@ -206,21 +215,17 @@
             document.getElementById('v_url_clean').value = match ? match[0] : "";
         }
 
-        // التحقق من الرابط (Validation) - نقطة مضافة
-        function isValidUrl(url) {
-            return /tiktok\.com/.test(url);
-        }
+        function isValidUrl(url) { return /tiktok\.com/.test(url); }
 
         async function downloadVideo() {
             const url = document.getElementById('v_url_clean').value.trim();
             if(!url) { showNotification("الرجاء لصق الرابط أولاً"); return; }
             if(!isValidUrl(url)) { showNotification("الرجاء إدخال رابط تيك توك صحيح"); return; }
             
-            // تطبيق نظام الحماية
             const now = Date.now();
             RATE_LIMIT.requests = RATE_LIMIT.requests.filter(t => now - t < RATE_LIMIT.window);
             if(RATE_LIMIT.requests.length >= RATE_LIMIT.max) {
-                showNotification("أبطئ قليلاً! انتظر دقيقة قبل المحاولة مرة أخرى", "warning");
+                showNotification("أبطئ قليلاً! انتظر دقيقة", "warning");
                 return;
             }
             RATE_LIMIT.requests.push(now);
@@ -238,9 +243,7 @@
                     globalMusicUrl = responseData.data.music;
                     document.getElementById('videoPreview').src = globalVideoUrl;
                     document.getElementById('result').style.display = 'block';
-                } else {
-                    throw new Error();
-                }
+                } else { throw new Error(); }
             } catch(e) {
                 showNotification("عذراً، فشل استخراج الفيديو");
                 document.getElementById('inputArea').style.display = 'flex';
@@ -258,7 +261,6 @@
             const btn = type === 'HD' ? document.getElementById('hdBtn') : document.getElementById('sdBtn');
             const originalText = btn.innerText;
             btn.innerText = "⏳ جاري التحميل...";
-            
             try {
                 const response = await fetch(globalVideoUrl);
                 const blob = await response.blob();
@@ -269,9 +271,7 @@
                 document.body.appendChild(a);
                 a.click();
                 a.remove();
-            } catch (e) {
-                window.open(globalVideoUrl, '_blank');
-            }
+            } catch (e) { window.open(globalVideoUrl, '_blank'); }
             btn.innerText = originalText;
         }
 
@@ -288,9 +288,7 @@
                 document.body.appendChild(a);
                 a.click();
                 a.remove();
-            } catch (e) {
-                window.open(globalMusicUrl, '_blank');
-            }
+            } catch (e) { window.open(globalMusicUrl, '_blank'); }
             btn.innerText = "🎵 تحميل موسيقى MP3";
         }
     </script>
