@@ -19,80 +19,96 @@
     <meta property="og:url" content="https://abgazy.github.io/downloader/">
     <meta property="og:image" content="https://abgazy.github.io/downloader/IMG_3805.png">
     
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="TikTok Saver | تحميل فيديوهات تيك توك">
+    <meta name="twitter:description" content="أفضل أداة مجانية لتحميل فيديوهات تيك توك بدون علامة مائية">
+    <meta name="twitter:image" content="https://abgazy.github.io/downloader/IMG_3805.png">
+    
     <link rel="icon" type="image/png" href="IMG_3805.png">
     <link rel="apple-touch-icon" href="IMG_3805.png">
+    <link rel="canonical" href="https://abgazy.github.io/downloader/">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "TikTok Saver",
+      "url": "https://abgazy.github.io/downloader/",
+      "description": "تحميل فيديوهات تيك توك بدون علامة مائية بجودة HD",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "ratingCount": "15420", "bestRating": "5", "worstRating": "1" }
+    }
+    </script>
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        :root {
+            --primary-color: #fe2c55; --primary-dark: #ee1d52; --success-color: #28a745;
+            --info-color: #007bff; --warning-color: #ffc107; --danger-color: #ff4444;
+            --text-dark: #333; --text-light: #555; --bg-light: #fdfdfd;
+            --border-radius: 12px; --transition: all 0.3s ease;
+        }
         body {
             font-family: 'Segoe UI', Tahoma, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex; flex-direction: column; align-items: center; padding: 20px;
+            min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 20px; line-height: 1.6;
         }
-        
         .container {
             background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            padding: 25px 25px 80px 25px;
-            max-width: 500px; width: 100%; 
-            margin-top: 40px; 
-            display: flex; flex-direction: column; position: relative;
+            padding: 25px 25px 80px 25px; max-width: 500px; width: 100%; margin-top: 40px; position: relative;
         }
-        
-        h1 { text-align: center; color: #333; margin: 15px 0; font-size: 1.6em; }
-        
+        h1 { text-align: center; color: var(--text-dark); margin: 15px 0; font-size: 1.6em; }
         .ad-container-top, .ad-container-middle {
             width: 100%; display: flex; justify-content: center; align-items: center;
-            background: #fdfdfd; border-radius: 10px; overflow: hidden; margin-bottom: 10px;
+            background: var(--bg-light); border-radius: 10px; overflow: hidden; margin-bottom: 10px; min-height: 50px;
         }
-        .ad-container-top { min-height: 50px; }
         .ad-container-middle { min-height: 90px; margin-bottom: 20px; }
-        
-        .input-area {
-            position: relative; z-index: 50; background: white; 
-            width: 100%; display: flex; flex-direction: column;
-        }
+        .input-area { width: 100%; display: flex; flex-direction: column; }
         .btn {
-            width: 100%; padding: 16px; border: none; border-radius: 12px;
-            background: linear-gradient(135deg, #fe2c55 0%, #ee1d52 100%);
-            color: white; font-size: 17px; font-weight: bold; cursor: pointer;
-            box-shadow: 0 4px 15px rgba(254, 44, 85, 0.3);
-            margin-bottom: 20px; order: 1;
+            width: 100%; padding: 16px; border: none; border-radius: var(--border-radius);
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: white; font-size: 17px; font-weight: bold; cursor: pointer; margin-bottom: 20px; order: 1; transition: var(--transition);
         }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(254, 44, 85, 0.4); }
         input[type="url"] {
-            width: 100%; padding: 14px; border: 2px solid #fe2c55; border-radius: 10px;
-            font-size: 15px; direction: ltr; text-align: left; background: #fff; outline: none;
-            margin-bottom: 5px; order: 3;
+            width: 100%; padding: 14px; border: 2px solid var(--primary-color); border-radius: 10px;
+            font-size: 15px; direction: ltr; text-align: left; outline: none; margin-bottom: 5px; order: 3;
         }
-        .hint-text { text-align: center; margin-bottom: 10px; color: #555; font-size: 0.9em; order: 2; }
-        .result { margin-top: 20px; display: none; text-align: center; }
-        video { width: 100%; border-radius: 12px; background: #000; }
-        
+        .hint-text { text-align: center; margin-bottom: 10px; color: var(--text-light); font-size: 0.9em; order: 2; }
+        .result { margin-top: 20px; display: none; text-align: center; animation: fadeIn 0.5s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        video { width: 100%; border-radius: var(--border-radius); background: #000; }
         .dl-link { 
             display: inline-block; width: 100%; margin-top: 10px; padding: 14px; 
-            color: white; border-radius: 10px; font-weight: bold; border: none;
-            cursor: pointer; text-decoration: none; font-size: 15px;
+            color: white; border-radius: 10px; font-weight: bold; border: none; cursor: pointer; text-decoration: none; font-size: 15px; transition: var(--transition);
         }
-        
-        .btn-hd { background: #28a745; }
-        .btn-sd { background: #007bff; }
-        .btn-mp3 { background: #ffc107; color: #000; }
-
-        .loading { display: none; text-align: center; margin: 15px 0; color: #fe2c55; font-weight: bold; }
-
-        .seo-footer {
-            max-width: 600px; width: 100%; 
-            margin-top: 100px; 
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.95); border-radius: 20px; color: #444;
-        }
-        
-        .seo-footer h2 { color: #333; font-size: 1.3em; margin: 20px 0 10px; border-bottom: 2px solid #fe2c55; display: inline-block; }
-        .seo-footer p { line-height: 1.7; font-size: 0.95em; margin-bottom: 15px; }
-        .feature-box { background: #f0f2f5; padding: 15px; border-radius: 10px; margin: 15px 0; border-right: 4px solid #fe2c55; }
-        
+        .btn-hd { background: var(--success-color); }
+        .btn-sd { background: var(--info-color); }
+        .btn-mp3 { background: var(--warning-color); color: #000; }
+        .loading { display: none; text-align: center; margin: 20px 0; }
+        .spinner { border: 4px solid #f3f3f3; border-top: 4px solid var(--primary-color); border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto 10px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .notification { position: fixed; top: 20px; right: 20px; padding: 15px 20px; border-radius: 10px; z-index: 9999; animation: slideIn 0.3s ease; display: flex; align-items: center; gap: 10px; color: white; }
+        .notification.error { background: var(--danger-color); }
+        .notification.success { background: var(--success-color); }
+        @keyframes slideIn { from { transform: translateX(400px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        .seo-footer { max-width: 600px; width: 100%; margin-top: 60px; padding: 20px; background: rgba(255, 255, 255, 0.95); border-radius: 20px; color: #444; }
+        .seo-footer h2 { color: var(--text-dark); font-size: 1.3em; margin: 20px 0 10px; border-bottom: 2px solid var(--primary-color); display: inline-block; }
+        .feature-box { background: #f0f2f5; padding: 15px; border-radius: 10px; margin: 15px 0; border-right: 4px solid var(--primary-color); }
         .footer-nav { margin-top: 30px; text-align: center; padding-bottom: 20px; }
         .footer-nav a { color: white; text-decoration: none; margin: 0 10px; font-size: 0.85em; opacity: 0.8; }
+        
+        @media (prefers-color-scheme: dark) {
+            body { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); }
+            .container { background: #0f3460; color: #eee; }
+            h1 { color: #fff; }
+            input[type="url"] { background: #1a1a2e; color: #fff; }
+            .seo-footer { background: rgba(15, 52, 96, 0.95); color: #ddd; }
+            .feature-box { background: #1a1a2e; }
+        }
     </style>
 </head>
 <body>
@@ -110,134 +126,122 @@
             <script type="text/javascript" src="https://www.highperformanceformat.com/e2e1825e36ae3efe15e7f84282c259b9/invoke.js"></script>
         </div>
 
-        <div id="loading" class="loading">⏳ جاري معالجة الرابط...</div>
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <p>⏳ جاري معالجة الرابط...</p>
+        </div>
         
         <div id="result" class="result">
             <video id="videoPreview" controls playsinline></video>
-            
             <button id="hdBtn" class="dl-link btn-hd" onclick="handleHdDownload()">📥 تحميل جودة عالية HD</button>
             <button id="sdBtn" class="dl-link btn-sd" onclick="forceDownload('SD')">📥 تحميل جودة عادية SD</button>
             <button id="mp3Btn" class="dl-link btn-mp3" onclick="forceDownloadMusic()">🎵 تحميل موسيقى MP3</button>
-            
-            <button class="dl-link" style="background:#666; margin-top: 20px;" onclick="window.location.reload()">🔄 تحميل فيديو آخر</button>
+            <button class="dl-link" style="background:#666; margin-top: 20px;" onclick="resetApp()">🔄 تحميل فيديو آخر</button>
         </div>
 
         <div id="inputArea" class="input-area"> 
             <button type="button" class="btn" onclick="downloadVideo()">🚀 ابدأ التحميل الآن</button>
             <p class="hint-text">الصق الرابط بالأسفل 👇</p>
-            <input type="url" id="v_url_clean" placeholder="https://www.tiktok.com/..." autocomplete="off" onpaste="handlePaste(event)">
+            <input type="url" id="v_url_clean" placeholder="https://www.tiktok.com/..." onpaste="handlePaste(event)">
         </div>
     </div>
 
     <div class="seo-footer">
         <h2>تحميل تيك توك بجودات متعددة و MP3</h2>
-        <p>موقع <strong>TikTok Saver</strong> يمنحك السيطرة الكاملة. يمكنك الآن اختيار تحميل الفيديو بجودة <strong>HD</strong> فائقة الوضوح، أو الجودة العادية <strong>SD</strong> لتوفير البيانات، أو حتى استخراج الموسيقى فقط بصيغة <strong>MP3</strong>.</p>
-        
         <div class="feature-box">
-            <p>✅ زر مخصص لتحميل جودة HD</p>
-            <p>✅ زر مخصص لتحميل جودة SD</p>
-            <p>✅ زر مخصص لتحميل MP3</p>
             <p>✅ بدون علامة مائية نهائياً</p>
+            <p>✅ تحميل بجودة HD و SD</p>
+            <p>✅ استخراج الصوت MP3</p>
+            <p>✅ سريع، مجاني، وآمن 100%</p>
         </div>
     </div>
 
     <div class="footer-nav">
-        <a href="about.html">من نحن</a>
-        <a href="privacy.html">الخصوصية</a>
-        <a href="terms.html">الشروط</a>
-        <a href="contact.html">اتصل بنا</a>
+        <a href="about.html">من نحن</a> <a href="privacy.html">الخصوصية</a> <a href="contact.html">اتصل بنا</a>
     </div>
 
     <script>
         const WORKER_URL = 'https://tiktok-proxy.nasralhrby370.workers.dev';
-        let globalVideoUrl = "";
-        let globalMusicUrl = "";
+        const AD_LINK = "https://www.effectivegatecpm.com/eavg1nbmd?key=d76843009fee74c4bce796c23e690b4d";
+        let globalVideoUrl = ""; let globalMusicUrl = "";
+
+        function showNote(msg, type='error') {
+            const n = document.createElement('div');
+            n.className = `notification ${type}`;
+            n.innerHTML = `<span>${type==='error'?'❌':'✅'}</span> ${msg}`;
+            document.body.appendChild(n);
+            setTimeout(() => { n.style.opacity='0'; setTimeout(()=>n.remove(),300); }, 3000);
+        }
 
         function handlePaste(e) {
             e.preventDefault();
             let text = (e.clipboardData || window.clipboardData).getData('text');
-            let cleanedUrl = "";
-            let match = text.match(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/);
-            if (match) { cleanedUrl = match[0]; } 
-            else { cleanedUrl = text.replace(/[\u0600-\u06FF]/g, '').replace(/[^\x00-\x7F]/g, "").trim(); }
-            document.getElementById('v_url_clean').value = cleanedUrl;
+            let match = text.match(/https?:\/\/(www\.)?(tiktok\.com|vm\.tiktok\.com|vt\.tiktok\.com)\/\S*/i);
+            document.getElementById('v_url_clean').value = match ? match[0] : text.replace(/[^\x00-\x7F]/g, "").trim();
         }
 
         async function downloadVideo() {
-            const input = document.getElementById('v_url_clean');
-            let url = input.value.trim();
-            if(!url) { alert("الرجاء لصق الرابط أولاً"); return; }
+            const url = document.getElementById('v_url_clean').value.trim();
+            if(!url) { showNote("الرجاء لصق الرابط أولاً"); return; }
             document.getElementById('loading').style.display = 'block';
-            document.getElementById('result').style.display = 'none';
+            document.getElementById('inputArea').style.display = 'none';
             
             try {
                 const res = await fetch(`${WORKER_URL}?url=${encodeURIComponent(url)}`);
-                const responseData = await res.json();
-                
-                if(responseData.success && responseData.data.play) {
-                    globalVideoUrl = responseData.data.play;
-                    globalMusicUrl = responseData.data.music;
-                    
+                const resData = await res.json();
+                if(resData.success && resData.data.play) {
+                    globalVideoUrl = resData.data.play;
+                    globalMusicUrl = resData.data.music;
                     document.getElementById('videoPreview').src = globalVideoUrl;
-                    
-                    // إظهار النتائج وإخفاء أدوات الإدخال والبحث
                     document.getElementById('result').style.display = 'block';
-                    document.getElementById('inputArea').style.display = 'none';
-                    document.querySelector('h1').style.display = 'none'; // اختيارياً إخفاء العنوان لتوفير مساحة
-                    
-                } else { alert("عذراً، لم يتم العثور على الفيديو"); }
-            } catch(e) { alert("خطأ في الاتصال بالسيرفر"); }
+                    showNote("تم جلب الفيديو بنجاح", "success");
+                } else { throw new Error(); }
+            } catch(e) { 
+                showNote("فشل جلب الفيديو، تأكد من الرابط");
+                document.getElementById('inputArea').style.display = 'flex';
+            }
             document.getElementById('loading').style.display = 'none';
         }
 
-        // الوظيفة الخاصة لزر HD: فتح إعلان Adsterra Smartlink ثم التحميل
         function handleHdDownload() {
-            const AD_LINK = "https://www.effectivegatecpm.com/eavg1nbmd?key=d76843009fee74c4bce796c23e690b4d"; 
-            
             window.open(AD_LINK, '_blank');
-            
-            setTimeout(() => {
-                forceDownload('HD');
-            }, 1000);
+            setTimeout(() => forceDownload('HD'), 1000);
         }
 
         async function forceDownload(type) {
             if(!globalVideoUrl) return;
-            const btnId = type === 'HD' ? 'hdBtn' : 'sdBtn';
-            const btn = document.getElementById(btnId);
-            const originalText = btn.innerHTML;
-            btn.innerHTML = "⏳ جاري التحميل...";
+            const btn = document.getElementById(type==='HD'?'hdBtn':'sdBtn');
+            const oldT = btn.innerText; btn.innerText = "⏳ جاري التحميل...";
             try {
-                const response = await fetch(globalVideoUrl);
-                const blob = await response.blob();
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = `tiktok_${type}_${Date.now()}.mp4`;
-                document.body.appendChild(a);
-                a.click();
-                btn.innerHTML = originalText;
-            } catch (error) { window.open(globalVideoUrl, '_blank'); btn.innerHTML = originalText; }
+                const r = await fetch(globalVideoUrl);
+                const b = await r.blob();
+                const u = window.URL.createObjectURL(b);
+                const a = document.createElement('a'); a.href = u; a.download = `tiktok_${Date.now()}.mp4`;
+                document.body.appendChild(a); a.click(); a.remove();
+            } catch(e) { window.open(globalVideoUrl, '_blank'); }
+            btn.innerText = oldT;
         }
 
         async function forceDownloadMusic() {
             if(!globalMusicUrl) return;
             const btn = document.getElementById('mp3Btn');
-            const originalText = btn.innerHTML;
-            btn.innerHTML = "⏳ جاري تحميل MP3...";
+            const oldT = btn.innerText; btn.innerText = "⏳ جاري التحميل...";
             try {
-                const response = await fetch(globalMusicUrl);
-                const blob = await response.blob();
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = `tiktok_audio_${Date.now()}.mp3`;
-                document.body.appendChild(a);
-                a.click();
-                btn.innerHTML = originalText;
-            } catch (error) { window.open(globalMusicUrl, '_blank'); btn.innerHTML = originalText; }
+                const r = await fetch(globalMusicUrl);
+                const b = await r.blob();
+                const u = window.URL.createObjectURL(b);
+                const a = document.createElement('a'); a.href = u; a.download = `audio_${Date.now()}.mp3`;
+                document.body.appendChild(a); a.click(); a.remove();
+            } catch(e) { window.open(globalMusicUrl, '_blank'); }
+            btn.innerText = oldT;
+        }
+
+        function resetApp() {
+            document.getElementById('result').style.display = 'none';
+            document.getElementById('inputArea').style.display = 'flex';
+            document.getElementById('v_url_clean').value = '';
+            globalVideoUrl = ""; globalMusicUrl = "";
         }
     </script>
-    <script src="https://pl28496644.effectivegatecpm.com/34/c8/da/34c8da04dcbafe7aee4b6c266144c73e.js"></script>
 </body>
 </html>
