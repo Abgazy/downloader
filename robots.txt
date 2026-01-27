@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# رابط خريطة الموقع لتسهيل عمل عناكب جوجل
+Sitemap: https://abgazy.github.io/downloader/sitemap.xml
