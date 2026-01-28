@@ -82,6 +82,18 @@
         .ad-container { width: 100%; display: flex; justify-content: center; margin-bottom: 15px; border-radius: 10px; overflow: hidden; background: #f9f9f9; }
         .ad-middle { min-height: 90px; margin: 10px 0; } /* لضمان ثبات المساحة */
 
+        .other-sites-box {
+            display: flex; gap: 10px; justify-content: center; margin: 15px 0; padding: 10px;
+            background: rgba(0,0,0,0.05); border-radius: 15px; border: 1px solid rgba(0,0,0,0.1);
+        }
+        .site-link {
+            flex: 1; padding: 10px; border-radius: 10px; text-decoration: none;
+            font-size: 14px; font-weight: bold; text-align: center; transition: 0.3s;
+            display: flex; align-items: center; justify-content: center; gap: 5px;
+        }
+        .btn-twitter { background: #000; color: #fff; }
+        .site-link:hover { opacity: 0.8; transform: translateY(-2px); }
+
         .input-area { display: flex; flex-direction: column; }
         
         input[type="url"] {
@@ -137,6 +149,7 @@
             input[type="url"] { background: #16213e; color: white; border-color: #fe2c55; }
             .hint-text { color: #bbb; }
             .feature-box { background: rgba(255,255,255,0.05); }
+            .other-sites-box { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); }
         }
     </style>
 </head>
@@ -161,6 +174,10 @@
                 };
             </script>
             <script type="text/javascript" src="https://www.highperformanceformat.com/e2e1825e36ae3efe15e7f84282c259b9/invoke.js"></script>
+        </div>
+
+        <div class="other-sites-box">
+            <a href="https://abgazy.github.io/X/" class="site-link btn-twitter" style="flex: 1; width: 100%;">𝕏 Saver (Twitter)</a>
         </div>
 
         <div id="loading" class="loading" role="status">
